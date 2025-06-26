@@ -4,9 +4,9 @@
                 class="relative w-full h-screen bg-cover bg-center"
                 style="background-image: url('/images/signup-image.jpg')"
             >
-                <div class="flex items-center justify-start h-full bg-black bg-opacity-50 p-8">
+                <div class="flex items-center justify-start h-full bg-black bg-opacity-50 p-5">
                     <form
-                        class="p-8 rounded-lg text-white md:w-1/2 w-full"
+                        class="p- rounded-lg text-white md:w-1/2 w-full"
                     >
                         <h2 class="text-3xl font-bold text-center text-white mb-6 tracking-wider uppercase">
                             Contact

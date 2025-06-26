@@ -53,15 +53,15 @@ nav {
           <HeartIcon class="w-6 h-6 hidden md:flex text-yellow-500 cursor-pointer hover:text-blue-600" />
         </router-link>
 
-        <router-link to="/cart" class="relative">
+        <router-link to="/cart" class="relative hidden md:flex ">
           <!-- Cart Icon -->
-          <ShoppingCartIcon class="w-6 h-6 hidden md:flex text-gray-700 hover:text-blue-600" />
+          <ShoppingCartIcon class="w-6 h-6 text-gray-700 hover:text-blue-600" />
 
           <!-- Badge -->
           <span v-if="cart.totalItems > 0"
             class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5">
             <!-- {{ cart.totalItems }} -->
-            {{ cart.items.length }}
+                {{ cart.items.length }}
           </span>
         </router-link>
 
