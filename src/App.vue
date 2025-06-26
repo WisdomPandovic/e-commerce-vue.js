@@ -46,6 +46,9 @@ nav {
             active-class="text-blue-600 border-b-2 border-blue-600 pb-1">Products</router-link>
           <router-link to="/about" class="hover:text-blue-600"
             active-class="text-blue-600 border-b-2 border-blue-600 pb-1">About</router-link>
+            <router-link to="/wishlist" class="hover:text-blue-600">
+            <HeartIcon class="w-6 h-6 text-yellow-500 cursor-pointer hover:text-blue-600" />
+          </router-link>
         </div>
 
         <!-- Cart Icon (Desktop) -->
@@ -98,7 +101,7 @@ nav {
 
 <script setup>
 import { ref } from 'vue'
-import { ShoppingCartIcon, UserCircleIcon } from '@heroicons/vue/24/outline'
+import { ShoppingCartIcon, UserCircleIcon, HeartIcon } from '@heroicons/vue/24/outline'
 import Footer from './components/AppFooter.vue'
 import { useToast } from 'vue-toastification'
 const toast = useToast()

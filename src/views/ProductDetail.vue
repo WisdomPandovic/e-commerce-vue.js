@@ -2,18 +2,23 @@
     <div class="p-6 max-w-6xl mx-auto">
         <div class="flex items-center gap-2 my-3 text-sm">
             <div>
-                <router-link to="/products" class="flex items-center gap-2 my-3 text-sm">
+                <router-link to="/" class="flex items-center gap-2 my-3 text-xs">
                     <ArrowLeftIcon class="w-5 h-5" />
-                    Products
+                    Home
                 </router-link>
             </div>
-            <p class="font-semibold">Product Details</p>
+            <div>
+                <router-link to="/products" class="flex items-center gap-2 my-3 text-xs">
+                    /
+                    Products
+                    /
+                </router-link>
+            </div>
+            <p class="font-semibold text-xs">Product Details</p>
         </div>
         <div v-if="loading" class="flex justify-center items-center h-40">
-            <div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+            <div class="w-12 h-12 border-4 border-yellow-500 border-dashed rounded-full animate-spin"></div>
         </div>
-
-
 
         <div v-else-if="product" class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <img :src="product.images[0]" alt="Product image" class="w-full h-full object-cover rounded-lg shadow" />
@@ -57,11 +62,22 @@
                 </div>
 
                 <div class="flex items-center gap-2">
-                    <button class="flex-1 border rounded-full bg-black text-white text-sm text-center my-3 px-4 py-3">
+                    <button class="flex-1 border rounded-full bg-black text-white text-sm text-center my-3 px-4 py-3"
+                        @click.stop.prevent="() => addToCartHandler(product)">
                         Add to Cart
                     </button>
-                    <HeartIcon
-                        class="w-10 h-10 p-2 text-gray-700 border rounded-full border-gray-200 hover:text-blue-600 cursor-pointer" />
+                    <!-- <HeartIcon
+                        class="w-10 h-10 p-2 text-gray-700 border rounded-full border-gray-200 hover:text-blue-600 cursor-pointer" /> -->
+                    <!-- <HeartIcon @click="addToWishlist(product)"
+                        class="w-10 h-10 p-2 text-gray-700 border rounded-full border-gray-200 hover:text-blue-600 cursor-pointer" /> -->
+                    <!-- If not in wishlist: regular icon -->
+                    <HeartIcon v-if="!isInWishlist(product._id)" @click="addToWishlist(product)"
+                        class="w-10 h-10 p-2 text-gray-700 border rounded-full border-gray-200 hover:text-red-500 cursor-pointer" />
+
+                    <!-- If in wishlist: red filled icon -->
+                    <HeartIconSolid v-else @click="removeFromWishlist(product._id)"
+                        class="w-10 h-10 p-2 text-red-600 border rounded-full border-red-300 bg-red-100 cursor-pointer" />
+
                 </div>
 
                 <!-- <div class="border border-gray-300 rounded p-3 my-3">
@@ -286,6 +302,9 @@
 
         <div class="my-10 py-9">
             <h1 class="sm:text-4xl text-lg font-bold text-center">You might also like</h1>
+            <div v-if="loading" class="flex justify-center items-center h-40">
+                <div class="w-12 h-12 border-4 border-yellow-500 border-dashed rounded-full animate-spin"></div>
+            </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-8">
                 <div v-for="item in recommendedProducts" :key="item._id"
@@ -317,11 +336,16 @@
 import { ref, onMounted, computed } from 'vue'
 import { watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { useCartStore } from '@/store/cartStore'
+import { useWishlistStore } from '@/store/wishlistStore'
 // import { ArrowLeftIcon } from "@vue-hero-icons/outline"
 // import { HeartIcon } from "@vue-hero-icons/outline"
 import { ChevronLeftIcon, ChevronRightIcon, StarIcon, ChevronUpIcon, HeartIcon, ArrowLeftIcon, CurrencyBangladeshiIcon, CalendarIcon, TruckIcon, InboxIcon } from '@heroicons/vue/24/outline'
+import { HeartIcon as HeartIconSolid } from '@heroicons/vue/24/solid'
 // import { ChevronUpIcon } from "@vue-hero-icons/outline"
 import { BanIcon } from "@vue-hero-icons/outline"
+import { useToast } from 'vue-toastification'
+const toast = useToast()
 
 export default {
     components: {
@@ -333,6 +357,7 @@ export default {
         ArrowLeftIcon, StarIcon,
         ChevronRightIcon,
         ChevronLeftIcon,
+        HeartIconSolid
         // ArrowLeftIcon
     },
     setup() {
@@ -343,6 +368,34 @@ export default {
         const scrollContainer = ref(null)
         const currentIndex = ref(0)
         const recommendedProducts = ref([])
+
+        const cart = useCartStore()
+        const wishlist = useWishlistStore()
+
+        const addToCartHandler = (product) => {
+            cart.addToCart(product)
+            console.log('Clicked to add product:', product)
+            toast.success(`${product.name} added to cart!`, {
+                timeout: 3000,
+                position: 'top-right',
+            })
+        }
+
+        const addToWishlist = (product) => {
+            wishlist.addToWishlist(product)
+            toast.success('Added to Wishlist!')
+        }
+
+        const isInWishlist = (id) => {
+      if (!id) return false; // prevent errors from undefined/null id
+      return Array.isArray(wishlist.items) &&
+        wishlist.items.some(item => item && item._id === id)
+    }
+
+        const removeFromWishlist = (id) => {
+            wishlist.removeFromWishlist(id)
+            toast.info('Removed from Wishlist')
+        }
 
         const reviews = [
             {
@@ -457,6 +510,11 @@ export default {
             next,
             prev,
             recommendedProducts,
+            addToCartHandler,
+            addToWishlist,
+            wishlist,
+            isInWishlist,
+            removeFromWishlist,
         }
     }
 }

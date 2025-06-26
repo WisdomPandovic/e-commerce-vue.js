@@ -13,6 +13,10 @@
             class="w-4 h-4 text-gray-500 hover:text-blue-600 cursor-pointer transition-transform duration-150" />
         </div>
       </div>
+
+      <div v-if="loading" class="flex justify-center items-center h-40">
+            <div class="w-12 h-12 border-4 border-yellow-500 border-dashed rounded-full animate-spin"></div>
+        </div>
   
       <!-- Sliding Product Row -->
       <div class="overflow-hidden mt-8">
@@ -27,16 +31,23 @@
           >
             <router-link :to="`/productDetails/${item._id}`">
             <img :src="item.images[0]" :alt="item.name" class="w-full h-60 object-cover rounded mb-3" />
+        </router-link>
             <div class="flex justify-between items-center">
               <div class="flex-1 min-w-0">
                 <h2 class="text-sm font-semibold truncate">{{ item.name }}</h2>
                 <p class="text-sm font-bold text-black">₦{{ item.price }}</p>
               </div>
-              <div class="bg-black p-2 rounded ml-2">
+              <!-- <div class="bg-black p-2 rounded ml-2">
                 <ShoppingCartIcon class="w-5 h-5 text-white hover:text-blue-300 transition-colors" />
-              </div>
+              </div> -->
+              <div class="bg-black p-2 rounded ml-2">
+                <ShoppingCartIcon
+  @click.stop.prevent="() => addToCartHandler(item)"
+  class="w-5 h-5 text-white hover:text-blue-300 transition-colors cursor-pointer"
+/>
+</div>
             </div>
-        </router-link>
+      
           </div>
         </div>
       </div>
@@ -49,8 +60,12 @@ import {
     ChevronRightIcon,
     ShoppingCartIcon,
   } from '@heroicons/vue/24/outline'
+  import { useCartStore } from '@/store/cartStore'
   
   import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+  import { useToast } from 'vue-toastification'
+const toast = useToast()
   
   export default {
     components: {
@@ -61,8 +76,20 @@ import {
   
     setup() {
       const featuredProducts = ref([])
+      const loading = ref(true)
       const currentIndex = ref(0)
       const itemWidth = ref(33.3333) // default to 3 items per row
+
+      const cart = useCartStore()
+
+      const addToCartHandler = (product) => {
+  cart.addToCart(product)
+  console.log('Clicked to add product:', product)
+  toast.success(`${product.name} added to cart!`, {
+    timeout: 3000,
+    position: 'top-right',
+  })
+}
   
       const updateItemWidth = () => {
         const width = window.innerWidth
@@ -76,7 +103,9 @@ import {
           featuredProducts.value = data.filter(p => p.category?.name === 'Neophytegarments')
         } catch (err) {
           console.error('Failed to load featured products:', err)
-        }
+        }finally {
+                loading.value = false
+            }
       }
   
       const slideLeft = () => {
@@ -101,10 +130,12 @@ import {
   
       return {
         featuredProducts,
+        loading,
         currentIndex,
         itemWidth,
         slideLeft,
         slideRight,
+        addToCartHandler, 
       }
     },
   }

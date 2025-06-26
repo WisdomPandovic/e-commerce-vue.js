@@ -4,228 +4,110 @@
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
             <!-- Left Div: 2/3 of width -->
             <div class="col-span-2">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div v-for="item in cart.items" :key="item._id" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                    <!-- Image -->
                     <div class="flex justify-center items-center bg-gray-200 p-2">
-                        <img src="images/Bomber Jacket.png" alt="Product Image"
-                            class="w-40 h-40 object-cover rounded-lg shadow" />
+                        <img :src="item.images[0]" :alt="item.name" class="w-40 h-40 object-cover rounded-lg shadow" />
                     </div>
 
-                    <div class="flex justify-between">
+                    <!-- Details -->
+                    <div class="flex justify-between w-full">
                         <div>
-                            <h1 class="sm:text-3xl text-lg font-bold uppercase">Bomber Jacket</h1>
-                            <p class="my-4">₦1,233</p>
+                            <h1 class="sm:text-3xl text-lg font-bold uppercase">{{ item.name }}</h1>
+                            <p class="my-4">₦{{ item.price }}</p>
 
+                            <!-- Options -->
                             <div class="flex items-center justify-between gap-6 my-6">
-                                <!-- Color Picker -->
+                                <!-- Color -->
                                 <div>
                                     <div class="flex items-center gap-3">
                                         <div class="w-6 h-6 bg-black rounded-full border-2 border-gray-300"></div>
                                         <p class="text-sm font-medium text-gray-700">Black</p>
                                         <ChevronUpIcon
-                                            class="w-6 h-6 text-gray-500 hover:text-blue-600 cursor-pointer transition-transform duration-150" />
+                                            class="w-6 h-6 text-gray-500 hover:text-blue-600 cursor-pointer" />
                                     </div>
                                     <div class="border-b border-black font-bold mt-2"></div>
                                 </div>
 
-                                <!-- Size Selector -->
+                                <!-- Size -->
                                 <div>
                                     <div class="flex items-center gap-3">
                                         <p class="text-sm font-medium text-gray-700">Size:</p>
                                         <div class="bg-black text-white text-xs font-semibold px-3 py-1 rounded-full">S
                                         </div>
                                         <ChevronUpIcon
-                                            class="w-6 h-6 text-gray-500 hover:text-blue-600 cursor-pointer transition-transform duration-150" />
+                                            class="w-6 h-6 text-gray-500 hover:text-blue-600 cursor-pointer" />
                                     </div>
                                     <div class="border-b border-black font-bold mt-2"></div>
                                 </div>
                             </div>
 
+                            <!-- Quantity -->
                             <div class="flex justify-between items-center">
                                 <h2 class="text-xs font-bold uppercase">Quantity</h2>
-
-                                <div class="flex items-center gap-2">
+                                <!-- <div class="flex items-center gap-2">
                                     <button
-                                        class="w-8 h-8 border rounded text-lg font-bold hover:bg-gray-100 transition">
-                                        –
-                                    </button>
+                                        class="w-8 h-8 border rounded text-lg font-bold hover:bg-gray-100">–</button>
                                     <div class="w-8 h-8 flex items-center justify-center bg-black text-white rounded">
-                                        2
+                                        {{ item.quantity }}
                                     </div>
                                     <button
-                                        class="w-8 h-8 border rounded text-lg font-bold hover:bg-gray-100 transition">
-                                        +
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <XCircleIcon class="w-10 h-10 p-2 text-gray-700 hover:text-blue-600 cursor-pointer" />
-                        </div>
-                    </div>
-                </div>
-                <div class="border-b border-black font-bold my-9"></div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="flex justify-center items-center bg-gray-200 p-2">
-                        <img src="images/Tailored Jacket.png" alt="Product Image"
-                            class="w-40 h-40 object-cover rounded-lg shadow" />
-                    </div>
-
-                    <div class="flex justify-between">
-                        <div>
-                            <h1 class="sm:text-3xl text-lg font-bold uppercase">Tailored Jacket</h1>
-                            <p class="my-4">₦2,233</p>
-
-                            <div class="flex items-center justify-between gap-6 my-6">
-                                <!-- Color Picker -->
-                                <div>
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-6 h-6 bg-black rounded-full border-2 border-gray-300"></div>
-                                        <p class="text-sm font-medium text-gray-700">Black</p>
-                                        <ChevronUpIcon
-                                            class="w-6 h-6 text-gray-500 hover:text-blue-600 cursor-pointer transition-transform duration-150" />
-                                    </div>
-                                    <div class="border-b border-black font-bold mt-2"></div>
-                                </div>
-
-                                <!-- Size Selector -->
-                                <div>
-                                    <div class="flex items-center gap-3">
-                                        <p class="text-sm font-medium text-gray-700">Size:</p>
-                                        <div class="bg-black text-white text-xs font-semibold px-3 py-1 rounded-full">S
-                                        </div>
-                                        <ChevronUpIcon
-                                            class="w-6 h-6 text-gray-500 hover:text-blue-600 cursor-pointer transition-transform duration-150" />
-                                    </div>
-                                    <div class="border-b border-black font-bold mt-2"></div>
-                                </div>
-                            </div>
-
-                            <div class="flex justify-between items-center">
-                                <h2 class="text-xs font-bold uppercase">Quantity</h2>
-
+                                        class="w-8 h-8 border rounded text-lg font-bold hover:bg-gray-100">+</button>
+                                </div> -->
                                 <div class="flex items-center gap-2">
-                                    <button
-                                        class="w-8 h-8 border rounded text-lg font-bold hover:bg-gray-100 transition">
-                                        –
-                                    </button>
+                                    <button @click="cart.decreaseQuantity(item._id)"
+                                        class="w-8 h-8 border rounded text-lg font-bold hover:bg-gray-100">–</button>
+
                                     <div class="w-8 h-8 flex items-center justify-center bg-black text-white rounded">
-                                        2
+                                        {{ item.quantity }}
                                     </div>
-                                    <button
-                                        class="w-8 h-8 border rounded text-lg font-bold hover:bg-gray-100 transition">
-                                        +
-                                    </button>
+
+                                    <button @click="cart.increaseQuantity(item._id)"
+                                        class="w-8 h-8 border rounded text-lg font-bold hover:bg-gray-100">+</button>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Remove Button -->
                         <div>
-                            <XCircleIcon class="w-10 h-10 p-2 text-gray-700 hover:text-blue-600 cursor-pointer" />
+                            <XCircleIcon @click="cart.removeFromCart(item._id)"
+                                class="w-10 h-10 p-2 text-gray-700 hover:text-red-600 cursor-pointer" />
                         </div>
                     </div>
+
+                    <div class="border-b border-black font-bold col-span-2"></div>
                 </div>
-                <div class="border-b border-black font-bold my-9"></div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="flex justify-center items-center bg-gray-200 p-2">
-                        <img src="images/coat.jpg" alt="Product Image"
-                            class="w-40 h-40 object-cover rounded-lg shadow" />
-                    </div>
-
-                    <div class="flex justify-between">
-                        <div>
-                            <h1 class="sm:text-3xl text-lg font-bold uppercase">Coat</h1>
-                            <p class="my-4">₦3,233</p>
-
-                            <div class="flex items-center justify-between gap-6 my-6">
-                                <!-- Color Picker -->
-                                <div>
-                                    <div class="flex items-center gap-3">
-                                        <div class="w-6 h-6 bg-black rounded-full border-2 border-gray-300"></div>
-                                        <p class="text-sm font-medium text-gray-700">Black</p>
-                                        <ChevronUpIcon
-                                            class="w-6 h-6 text-gray-500 hover:text-blue-600 cursor-pointer transition-transform duration-150" />
-                                    </div>
-                                    <div class="border-b border-black font-bold mt-2"></div>
-                                </div>
-
-                                <!-- Size Selector -->
-                                <div>
-                                    <div class="flex items-center gap-3">
-                                        <p class="text-sm font-medium text-gray-700">Size:</p>
-                                        <div class="bg-black text-white text-xs font-semibold px-3 py-1 rounded-full">S
-                                        </div>
-                                        <ChevronUpIcon
-                                            class="w-6 h-6 text-gray-500 hover:text-blue-600 cursor-pointer transition-transform duration-150" />
-                                    </div>
-                                    <div class="border-b border-black font-bold mt-2"></div>
-                                </div>
-                            </div>
-
-                            <div class="flex justify-between items-center">
-                                <h2 class="text-xs font-bold uppercase">Quantity</h2>
-
-                                <div class="flex items-center gap-2">
-                                    <button
-                                        class="w-8 h-8 border rounded text-lg font-bold hover:bg-gray-100 transition">
-                                        –
-                                    </button>
-                                    <div class="w-8 h-8 flex items-center justify-center bg-black text-white rounded">
-                                        2
-                                    </div>
-                                    <button
-                                        class="w-8 h-8 border rounded text-lg font-bold hover:bg-gray-100 transition">
-                                        +
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <XCircleIcon class="w-10 h-10 p-2 text-gray-700 hover:text-blue-600 cursor-pointer" />
-                        </div>
-                    </div>
-                </div>
-                <div class="border-b border-black font-bold my-9"></div>
             </div>
 
             <!-- Right Div: 1/3 of width -->
             <div class="col-span-1">
                 <div class="bg-gray-200 p-6 roundedh-fit uppercase">
-                    <div class="flex justify-between items-center">
-                        <p class="text-sm mb-4">Bombered Jacket</p>
-                        <p>₦1,233</p>
+                    <!-- Loop through cart items -->
+                    <div v-for="item in cart.items" :key="item._id" class="flex justify-between items-center mb-4">
+                        <p class="text-sm truncate">{{ item.name }}</p>
+                        <p>₦{{ item.price * item.quantity }}</p>
                     </div>
-                    <div class="flex justify-between items-center">
-                        <p class="text-sm mb-4">Tailored Jacket</p>
-                        <p>₦2,233</p>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <p class="text-sm mb-4">Coat</p>
-                        <p>₦3,233</p>
-                    </div>
+
                     <div class="border-b border-black font-bold my-4"></div>
-                    <div class="flex justify-between items-center">
-                        <p class="text-sm mb-4">Sales Tax</p>
+
+                    <div class="flex justify-between items-center mb-4">
+                        <p class="text-sm ">Sales Tax</p>
                         <p class="text-xs">Included</p>
                     </div>
+
                     <div class="border-b border-black font-bold my-4"></div>
+
                     <div class="flex justify-between items-center">
                         <p class="font-bold">Total</p>
-                        <p class="font-bold"> ₦6,699</p>
+                        <p class="font-bold">₦{{ cart.totalPrice }}</p>
                     </div>
 
-                    <!-- <button class="w-full mt-6 bg-black text-white text-xs py-2 rounded hover:bg-gray-900 uppercase">
-                        Proceed to Checkout
-                    </button> -->
-
                     <button
-                        className="w-full mt-6 py-3 rounded text-white text-xs bg-black border border-black relative overflow-hidden group uppercase">
+                        class="w-full mt-6 py-3 rounded text-white text-xs bg-black border border-black relative overflow-hidden group uppercase">
                         <span
-                            className="absolute inset-0 bg-[#ffe7c7] transition-all duration-300 transform -translate-x-full group-hover:translate-x-0"></span>
-                        <span className="relative z-10 group-hover:text-black">Proceed to Checkout</span>
+                            class="absolute inset-0 bg-[#ffe7c7] transition-all duration-300 transform -translate-x-full group-hover:translate-x-0"></span>
+                        <span class="relative z-10 group-hover:text-black">Proceed to Checkout</span>
                     </button>
                 </div>
             </div>
@@ -233,6 +115,9 @@
 
         <div class="my-9 py-9">
             <h1 class="sm:text-2xl text-lg font-bold text-center">Recommended Products</h1>
+            <div v-if="loading" class="flex justify-center items-center h-40">
+                <div class="w-12 h-12 border-4 border-yellow-500 border-dashed rounded-full animate-spin"></div>
+            </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-8">
                 <div v-for="item in recommendedProducts" :key="item._id"
@@ -261,6 +146,7 @@
 </template>
 
 <script>
+import { useCartStore } from '@/store/cartStore'
 import { ChevronUpIcon, XCircleIcon, StarIcon, } from '@heroicons/vue/24/outline'
 import { ref, onMounted } from 'vue'
 
@@ -273,6 +159,8 @@ export default {
     setup() {
         const recommendedProducts = ref([])
         const loading = ref(true)
+        const cart = useCartStore()
+        console.log('Cart Items:', cart.items)
 
         const fetchProducts = async () => {
             try {
@@ -298,6 +186,7 @@ export default {
         return {
             recommendedProducts,
             loading,
+            cart,
         }
     }
 }

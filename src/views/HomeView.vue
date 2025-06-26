@@ -2,6 +2,10 @@
   <div class="bg-gray-100">
     <HomeBanner />
     <div class="max-w-6xl mx-auto px-4 py-8 my-5">
+
+      <div v-if="loading" class="flex justify-center items-center h-40">
+            <div class="w-12 h-12 border-4 border-yellow-500 border-dashed rounded-full animate-spin"></div>
+        </div>
       <div v-if="neophyteProducts.length > 0" class=" px-4 py-8 my-5">
         <h2 class="sm:text-2xl text-lg font-bold text-center my-6">
           Details with Eco-friendly Materials
@@ -13,8 +17,11 @@
               <router-link :to="`/productDetails/${product._id}`">
                 <div class="relative">
                   <!-- Heart Icon -->
-                  <HeartIcon
-                    class="w-6 h-6 text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
+                  <HeartIcon v-if="!isInWishlist(product._id)" @click.stop.prevent="addToWishlist(product)"
+                class="w-10 h-10 bg-white p-2 text-yellow-700 border rounded-full border-gray-200 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer" />
+
+              <HeartIconSolid v-else @click.stop.prevent="removeFromWishlist(product._id)"
+                class="w-10 h-10 p-2 bg-white text-red-600 border rounded-full border-red-300 bg-red-100 absolute top-2 right-2 z-10 cursor-pointer" />
                   <img :src="product.images[0]" :alt="product.name" class="w-full h-44 object-cover rounded-lg" />
                   <p class="text-sm font-semibold truncate mt-2">{{ product.name }}</p>
                   <div class="flex items-center justify-center text-center gap-2 my-2">
@@ -35,8 +42,11 @@
             <router-link :to="`/productDetails/${neophyteProducts[4]._id}`">
               <div class="relative">
                 <!-- Heart Icon -->
-                <HeartIcon
-                  class="w-6 h-6 text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
+                <HeartIcon v-if="!isInWishlist(neophyteProducts[4]._id)" @click.stop.prevent="addToWishlist(neophyteProducts[4])"
+                class="w-10 h-10 bg-white p-2 text-yellow-700 border rounded-full border-gray-200 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer" />
+
+              <HeartIconSolid v-else @click.stop.prevent="removeFromWishlist(neophyteProducts[4]._id)"
+                class="w-10 h-10 p-2 bg-white text-red-600 border rounded-full border-red-300 bg-red-100 absolute top-2 right-2 z-10 cursor-pointer" />
                 <img :src="neophyteProducts[4].images[0]" :alt="neophyteProducts[4].name"
                   class="w-full h-[450px] object-cover rounded-lg" />
                 <p class="text-lg font-semibold truncate mt-4">{{ neophyteProducts[4].name }}</p>
@@ -58,8 +68,11 @@
               <router-link :to="`/productDetails/${product._id}`">
                 <div class="relative">
                   <!-- Heart Icon -->
-                  <HeartIcon
-                    class="w-6 h-6 text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
+                  <HeartIcon v-if="!isInWishlist(product._id)" @click.stop.prevent="addToWishlist(product)"
+                class="w-10 h-10 bg-white p-2 text-yellow-700 border rounded-full border-gray-200 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer" />
+
+              <HeartIconSolid v-else @click.stop.prevent="removeFromWishlist(product._id)"
+                class="w-10 h-10 p-2 bg-white text-red-600 border rounded-full border-red-300 bg-red-100 absolute top-2 right-2 z-10 cursor-pointer" />
                   <img :src="product.images[0]" :alt="product.name" class="w-full h-44 object-cover rounded-lg" />
                   <p class="text-sm font-semibold truncate mt-2">{{ product.name }}</p>
                   <div class="flex items-center justify-center text-center gap-2 my-2">
@@ -77,6 +90,7 @@
         </div>
       </div>
 
+      <!-- Limted Offer -->
       <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="flex items-center justify-center bg-gray-200">
           <img src="images/1.jpg" alt="Signup Visual" class="w-full max-h-[250px] shadow-xl object-cover" />
@@ -246,6 +260,7 @@
         </div>
       </div>
 
+      <!-- We provide best customer experience -->
       <div class="my-8">
         <div class="flex flex-col md:flex-row items-start md:items-center">
 
@@ -304,11 +319,41 @@
 <script setup>
 import HomeBanner from '@/components/HomeBanner.vue'
 import FeaturedProduct from '@/components/FeaturedProduct.vue'
+import { useWishlistStore } from '@/store/wishlistStore'
 import { HeartIcon, StarIcon, CheckBadgeIcon, ShieldCheckIcon, SparklesIcon, TruckIcon } from '@heroicons/vue/24/outline'
+import { HeartIcon as HeartIconSolid } from '@heroicons/vue/24/solid'
 import { ref, onMounted } from 'vue'
+import { useToast } from 'vue-toastification'
+const toast = useToast()
 
 const neophyteProducts = ref([])
 const loading = ref(true)
+const wishlist = useWishlistStore()
+
+const addToWishlist = (product) => {
+      console.log('📦 Attempting to add to wishlist:', product)
+
+      if (!product || !product._id) {
+        console.warn('⚠️ Skipping invalid post:', product)
+        return
+      }
+
+      wishlist.addToWishlist(product)
+      console.log('✅ Added to wishlist. Current items:', wishlist.items)
+
+      toast.success('Added to Wishlist!')
+    }
+
+    const isInWishlist = (id) => {
+      if (!id) return false; // prevent errors from undefined/null id
+      return Array.isArray(wishlist.items) &&
+        wishlist.items.some(item => item && item._id === id)
+    }
+
+    const removeFromWishlist = (id) => {
+      wishlist.removeFromWishlist(id)
+      toast.info('Removed from Wishlist')
+    }
 
 // const fetchNeophyteProducts = async () => {
 //   try {
