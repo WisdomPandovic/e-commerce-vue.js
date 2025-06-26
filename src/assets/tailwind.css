@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* tailwind.css or global.css */
+body {
+    @apply font-montserrat;
+  }
+  
