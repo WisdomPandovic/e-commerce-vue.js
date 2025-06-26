@@ -33,37 +33,34 @@ nav {
 <template>
   <div id="app" class="min-h-screen bg-gray-50 text-gray-800">
     <!-- Navbar -->
-    <nav class="bg-white shadow-md px-4 py-3 flex items-center justify-between">
-      <div class="text-xl font-bold text-black uppercase">Panda</div>
+    <nav class="bg-white shadow-md px-4 py-3 flex items-center justify-between relative">
+      <!-- Left: Navigation Links -->
+      <div class="hidden md:flex items-center gap-6 text-sm font-semibold absolute left-4">
+        <router-link to="/" class="hover:text-blue-600"
+          active-class="text-blue-600 border-b-2 border-blue-600 pb-1">Home</router-link>
+        <router-link to="/products" class="hover:text-blue-600"
+          active-class="text-blue-600 border-b-2 border-blue-600 pb-1">Products</router-link>
+        <router-link to="/about" class="hover:text-blue-600"
+          active-class="text-blue-600 border-b-2 border-blue-600 pb-1">About</router-link>
+      </div>
 
-      <!-- Right side -->
-      <div class="flex items-center space-x-4">
-        <!-- Desktop Nav -->
-        <div class="hidden md:flex gap-6 text-sm font-semibold">
-          <router-link to="/" class="hover:text-blue-600"
-            active-class="text-blue-600 border-b-2 border-blue-600 pb-1">Home</router-link>
-          <router-link to="/products" class="hover:text-blue-600"
-            active-class="text-blue-600 border-b-2 border-blue-600 pb-1">Products</router-link>
-          <router-link to="/about" class="hover:text-blue-600"
-            active-class="text-blue-600 border-b-2 border-blue-600 pb-1">About</router-link>
-            <router-link to="/wishlist" class="hover:text-blue-600">
-            <HeartIcon class="w-6 h-6 text-yellow-500 cursor-pointer hover:text-blue-600" />
-          </router-link>
-        </div>
+      <!-- Center: Logo -->
+      <div class="text-xl font-bold text-black uppercase mx-auto">Panda</div>
 
-        <!-- Cart Icon (Desktop) -->
-        <router-link to="/cart" class="hidden md:block relative">
-          <ShoppingCartIcon class="w-6 h-6 text-gray-700 hover:text-blue-600" />
-          <!-- Optional badge -->
-          <!-- <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">3</span> -->
+      <!-- Right: Icons -->
+      <div class="flex items-center space-x-4 absolute right-4">
+        <router-link to="/wishlist" class="hover:text-blue-600">
+          <HeartIcon class="w-6 h-6 hidden md:flex text-yellow-500 cursor-pointer hover:text-blue-600" />
         </router-link>
 
-        <!-- User Icon Dropdown -->
+        <router-link to="/cart" class="relative">
+          <ShoppingCartIcon class="w-6 h-6 hidden md:flex text-gray-700 hover:text-blue-600" />
+        </router-link>
+
+        <!-- User Dropdown -->
         <div class="relative group" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
-          <!-- Icon -->
           <UserCircleIcon class="w-6 h-6 text-gray-700 cursor-pointer hover:text-blue-600" />
 
-          <!-- Dropdown -->
           <div v-show="showDropdown"
             class="absolute right-0 mt-2 w-40 bg-white border rounded shadow-md text-sm text-gray-700 z-50">
             <router-link to="/profile" class="block px-4 py-2 hover:bg-gray-100">Profile</router-link>
@@ -72,7 +69,7 @@ nav {
           </div>
         </div>
 
-        <!-- Hamburger (Mobile) -->
+        <!-- Mobile Menu Button -->
         <button @click="toggleMenu" class="md:hidden text-2xl">
           <span v-if="!menuOpen">☰</span>
           <span v-else>✕</span>
@@ -80,14 +77,18 @@ nav {
       </div>
     </nav>
 
+
     <!-- Mobile Nav -->
     <div v-if="menuOpen" class="md:hidden bg-white shadow px-4 pb-4 space-y-2 text-sm font-semibold">
       <router-link @click="closeMenu" to="/" class="block hover:text-blue-600">Home</router-link>
       <router-link @click="closeMenu" to="/products" class="block hover:text-blue-600">Products</router-link>
       <router-link @click="closeMenu" to="/about" class="block hover:text-blue-600">About</router-link>
       <router-link @click="closeMenu" to="/cart" class="block hover:text-blue-600 flex items-center gap-1">
-        <ShoppingCartIcon class="w-5 h-5" /> Cart
+        <ShoppingCartIcon class="w-5 h-5" />
       </router-link>
+      <router-link to="/wishlist" class="block hover:text-blue-600 flex items-center gap-1">
+          <HeartIcon class="w-6 h-6 " />
+        </router-link>
     </div>
 
     <!-- Route View -->
