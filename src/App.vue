@@ -54,7 +54,15 @@ nav {
         </router-link>
 
         <router-link to="/cart" class="relative">
+          <!-- Cart Icon -->
           <ShoppingCartIcon class="w-6 h-6 hidden md:flex text-gray-700 hover:text-blue-600" />
+
+          <!-- Badge -->
+          <span v-if="cart.totalItems > 0"
+            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5">
+            <!-- {{ cart.totalItems }} -->
+            {{ cart.items.length }}
+          </span>
         </router-link>
 
         <!-- User Dropdown -->
@@ -87,8 +95,8 @@ nav {
         <ShoppingCartIcon class="w-5 h-5" />
       </router-link>
       <router-link to="/wishlist" class="block hover:text-blue-600 flex items-center gap-1">
-          <HeartIcon class="w-6 h-6 " />
-        </router-link>
+        <HeartIcon class="w-6 h-6 " />
+      </router-link>
     </div>
 
     <!-- Route View -->
@@ -102,11 +110,13 @@ nav {
 
 <script setup>
 import { ref } from 'vue'
+import { useCartStore } from '@/store/cartStore'
 import { ShoppingCartIcon, UserCircleIcon, HeartIcon } from '@heroicons/vue/24/outline'
 import Footer from './components/AppFooter.vue'
 import { useToast } from 'vue-toastification'
 const toast = useToast()
 
+const cart = useCartStore()
 const menuOpen = ref(false)
 const toggleMenu = () => (menuOpen.value = !menuOpen.value)
 const closeMenu = () => (menuOpen.value = false)
