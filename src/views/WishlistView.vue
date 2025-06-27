@@ -1,43 +1,62 @@
 <template>
     <div class="p-6 max-w-6xl mx-auto">
-      <h1 class="text-3xl font-bold text-center mb-6">My Wishlist</h1>
+      <h1 class="text-3xl font-bold text-center my-6">My Wishlist</h1>
   
       <div v-if="wishlist.items.length === 0">
         <p class="text-center text-gray-500">Your wishlist is empty.</p>
       </div>
   
-      <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div v-for="product in wishlist.items" :key="product._id" class="relative border p-4 rounded-lg shadow-lg">
-          <!-- Remove from wishlist -->
-          <button
-            class="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-700 transition"
-            @click="removeFromWishlist(product._id)"
-          >
-            <XCircleIcon class="w-5 h-5" />
-          </button>
+      <div v-else class="space-y-2">
+        <!-- Header Row -->
+        <div class="hidden md:grid grid-cols-4 font-semibold text-gray-600 border-b pb-2">
+          <div>Product</div>
+          <div>Name</div>
+          <div>Price</div>
+          <div>Actions</div>
+        </div>
   
-          <!-- Product Image -->
-          <router-link :to="`/productDetails/${product._id}`" class="block">
-            <img
-              :src="product.images[0] || 'https://via.placeholder.com/300x200?text=No+Image'"
-              :alt="product.name"
-              class="w-full h-48 object-cover rounded"
-            />
-          </router-link>
+        <!-- Product Rows -->
+        <div
+          v-for="product in wishlist.items"
+          :key="product._id"
+          class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center border p-4 rounded shadow"
+        >
+          <!-- Image -->
+          <div class="flex items-center gap-2">
+            <router-link :to="`/productDetails/${product._id}`">
+              <img
+                :src="product.images[0] || 'https://via.placeholder.com/300x200?text=No+Image'"
+                :alt="product.name"
+                class="w-full sm:w-20 h-20 object-cover rounded"
+              />
+            </router-link>
+          </div>
   
-          <!-- Product Details -->
-          <h2 class="text-sm font-bold mt-4 truncate">{{ product.name }}</h2>
-          <p class="text-sm text-gray-600 my-2">{{ formatPrice(product.price) }}</p>
+          <!-- Name -->
+          <h2 class="text-sm font-bold truncate">{{ product.name }}</h2>
   
-          <!-- Add to Cart -->
-          <button class="w-full bg-yellow-500 text-sm text-black font-bold uppercase px-4 py-2 rounded hover:bg-black hover:text-white"
-          @click.stop.prevent="() => addToCartHandler(product)">
-            Add to Bag
-          </button>
+          <!-- Price -->
+          <p class="text-sm text-gray-600">{{ formatPrice(product.price) }}</p>
+  
+          <!-- Actions -->
+          <div class="flex gap-2">
+            <button
+              class="bg-yellow-500 text-xs font-bold px-3 py-2 rounded hover:bg-black hover:text-white transition"
+              @click="addToCartHandler(product)"
+            >
+              Add to Bag
+            </button>
+            <button
+              class="bg-red-500 text-white rounded-full p-1 hover:bg-red-700 transition"
+              @click="removeFromWishlist(product._id)"
+            >
+              <XCircleIcon class="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </template>
+  </template>  
   
   <script>
   import { XCircleIcon } from '@heroicons/vue/24/outline'

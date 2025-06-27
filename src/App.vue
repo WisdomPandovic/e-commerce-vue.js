@@ -49,6 +49,13 @@ nav {
 
       <!-- Right: Icons -->
       <div class="flex items-center space-x-4 absolute right-4">
+        <!-- 🔍 Search Box -->
+        <form @submit.prevent="handleSearch" class="flex items-center">
+          <!-- <input v-model="searchQuery" type="text" placeholder="Search..."
+          class="hidden md:block border border-gray-300 px-3 py-1 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" /> -->
+          <input v-model="searchTerm" @keyup.enter="goToSearch" type="text" placeholder="Search products..."
+            class="border px-3 py-1 rounded text-sm" />
+        </form>
         <router-link to="/wishlist" class="hover:text-blue-600">
           <HeartIcon class="w-6 h-6 hidden md:flex text-yellow-500 cursor-pointer hover:text-blue-600" />
         </router-link>
@@ -61,7 +68,7 @@ nav {
           <span v-if="cart.totalItems > 0"
             class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5">
             <!-- {{ cart.totalItems }} -->
-                {{ cart.items.length }}
+            {{ cart.items.length }}
           </span>
         </router-link>
 
@@ -101,7 +108,7 @@ nav {
 
     <!-- Route View -->
     <!-- <main class="max-w-7xl mx-auto px-4 py-8"> -->
-      <main class="">
+    <main class="">
       <router-view />
     </main>
 
@@ -111,6 +118,7 @@ nav {
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useCartStore } from '@/store/cartStore'
 import { ShoppingCartIcon, UserCircleIcon, HeartIcon } from '@heroicons/vue/24/outline'
 import Footer from './components/AppFooter.vue'
@@ -123,6 +131,17 @@ const toggleMenu = () => (menuOpen.value = !menuOpen.value)
 const closeMenu = () => (menuOpen.value = false)
 const showDropdown = ref(false)
 
+const searchQuery = ref('')
+const query = ref('')
+const router = useRouter()
+const searchTerm = ref('')
+
+const goToSearch = () => {
+  if (searchTerm.value.trim()) {
+    router.push({ path: '/search', query: { q: searchTerm.value } })
+  }
+}
+
 const logout = () => {
   // Add your logout logic here
   // alert('Logged out') // Or redirect, clear token, etc.
@@ -130,6 +149,12 @@ const logout = () => {
     timeout: 3000,
     position: 'top-right',
   })
+}
+
+function handleSearch() {
+  if (query.value.trim()) {
+    router.push({ name: 'SearchResults', query: { q: query.value.trim() } })
+  }
 }
 
 </script>

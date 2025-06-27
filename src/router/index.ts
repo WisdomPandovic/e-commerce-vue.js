@@ -49,7 +49,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/wishlist',
     name: 'wishlist',
     component: () => import('../views/WishlistView.vue')
-  }
+  },
+  {
+    path: '/search',
+    name: 'SearchResults',
+    component: () => import('@/views/SearchResults.vue')
+  }  
   
 ]
 

@@ -1,14 +1,40 @@
 <template>
   <div class="bg-gray-100">
     <div class="max-w-6xl mx-auto px-4 py-8 my-5">
-      <h1 class="text-2xl font-bold mb-4 text-center">Products</h1>
+      <div class="flex items-center gap-2 my-3 text-sm">
+            <div>
+                <router-link to="/" class="flex items-center gap-2 my-3 text-xs">
+                    <ArrowLeftIcon class="w-5 h-5" />
+                    Home /
+                </router-link>
+            </div>
+            <p class="font-semibold text-xs">Products</p>
+        </div>
+      <div class="flex justify-between items-center flex-wrap gap-3 mb-6">
+        <h1 class="text-2xl font-bold text-center">Products</h1>
+
+        <!-- Filter Controls -->
+        <div class="flex flex-wrap gap-2 items-center">
+          <!-- Filter by Category -->
+          <select v-model="selectedCategory" class="border px-3 py-1 rounded text-sm">
+            <option value="">All Categories</option>
+            <option v-for="category in uniqueCategories" :key="category" :value="category">
+              {{ category }}
+            </option>
+          </select>
+
+          <!-- Filter by Name -->
+          <input v-model="searchQuery" type="text" placeholder="Search name..."
+            class="border px-3 py-1 rounded text-sm" />
+        </div>
+      </div>
 
       <div v-if="loading" class="flex justify-center items-center h-40">
         <div class="w-12 h-12 border-4 border-yellow-500 border-dashed rounded-full animate-spin"></div>
       </div>
 
       <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <div v-for="post in posts" :key="post._id">
+        <div v-for="post in filteredPosts" :key="post._id">
           <router-link :to="`/productDetails/${post._id}`"
             class="block bg-white rounded-lg shadow hover:shadow-md transition-all p-4">
             <div class="relative text-center bg-white p-2">
@@ -40,155 +66,15 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 my-3">
-        <div class="relative text-center bg-white p-2">
-          <!-- Heart Icon -->
-          <HeartIcon
-            class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-          <img src="images/Tailored Jacket.png" alt="Tailored Jacket"
-            class="w-full h-44 rounded-lg shadow-xl object-cover" />
-          <p class="text-lg font-semibold mt-2">Coat</p>
-          <div class="flex items-center justify-center text-center gap-2 my-2">
-            <StarIcon class="w-3 h-3 text-yellow-400 font-bold" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-          </div>
-          <p class="text-xs text-gray-600">₦2573</p>
-        </div>
-        <div class="relative text-center bg-white p-2">
-          <!-- Heart Icon -->
-          <HeartIcon
-            class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-          <img src="images/underwear.jpg" alt="Underwear" class="w-full  h-44 rounded-lg shadow-xl object-cover" />
-          <p class="text-lg font-semibold mt-2">Underwear</p>
-          <div class="flex items-center justify-center text-center gap-2 my-2">
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-          </div>
-          <p class="text-xs text-gray-600">₦2573</p>
-        </div>
-        <div class="relative text-center bg-white p-2">
-          <!-- Heart Icon -->
-          <HeartIcon
-            class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-          <img src="images/vintage.jpg" alt="Vintage" class="w-full h-44 rounded-lg shadow-xl object-cover" />
-          <p class="text-lg font-semibold mt-2">Vintage Shirt</p>
-          <div class="flex items-center justify-center text-center gap-2 my-2">
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-          </div>
-          <p class="text-xs text-gray-600">₦2573</p>
-        </div>
-        <div class="relative text-center bg-white p-2">
-          <!-- Heart Icon -->
-          <HeartIcon
-            class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-          <img src="images/Bomber Jacket.png" alt="Bomber Jacket"
-            class="w-full  h-44 rounded-lg shadow-xl object-cover" />
-          <p class="text-lg font-semibold mt-2">Bomber Jacket</p>
-          <div class="flex items-center justify-center text-center gap-2 my-2">
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-          </div>
-          <p class="text-xs text-gray-600">₦2573</p>
-        </div>
-        <div class="relative text-center bg-white p-2">
-          <!-- Heart Icon -->
-          <HeartIcon
-            class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-          <img src="images/Pink Jacket.jpg" alt="Pink Jacket" class="w-full  h-44 rounded-lg shadow-xl object-cover" />
-          <p class="text-lg font-semibold mt-2">Pink Jacket</p>
-          <div class="flex items-center justify-center text-center gap-2 my-2">
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <!-- <StarIcon class="w-3 h-3 text-yellow-400" /> -->
-          </div>
-          <p class="text-xs text-gray-600">₦2573</p>
-        </div>
-        <div class="relative text-center bg-white p-2">
-          <!-- Heart Icon -->
-          <HeartIcon
-            class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-          <img src="images/Shirt & Pant.jpg" alt="Shirt & Pant"
-            class="w-full  h-44 rounded-lg shadow-xl object-cover" />
-          <p class="text-lg font-semibold mt-2">Shirt & Pant</p>
-          <div class="flex items-center justify-center text-center gap-2 my-2">
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-          </div>
-          <p class="text-xs text-gray-600">₦2573</p>
-        </div>
-        <div class="relative text-center bg-white p-2">
-          <!-- Heart Icon -->
-          <HeartIcon
-            class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-          <img src="images/Colored Hat.jpg" alt="Colored Hat" class="w-full  h-44 rounded-lg shadow-xl object-cover" />
-          <p class="text-lg font-semibold mt-2">Colored Hat</p>
-          <div class="flex items-center justify-center text-center gap-2 my-2">
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-          </div>
-          <p class="text-xs text-gray-600">₦2573</p>
-        </div>
-        <div class="relative text-center bg-white p-2">
-          <!-- Heart Icon -->
-          <HeartIcon
-            class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-          <img src="images/Arab Shopping Bag.jpg" alt="Arab Shopping Bag"
-            class="w-full  h-44 rounded-lg shadow-xl object-cover" />
-          <p class="text-lg font-semibold mt-2">Arab Shopping Bag</p>
-          <div class="flex items-center justify-center text-center gap-2 my-2">
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <!-- <StarIcon class="w-3 h-3 text-yellow-400" /> -->
-          </div>
-          <p class="text-xs text-gray-600">₦2573</p>
-        </div>
-        <div class="relative text-center bg-white p-2">
-          <!-- Heart Icon -->
-          <HeartIcon
-            class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-          <img src="images/coat.jpg" alt="Coat" class="w-full h-44 rounded-lg shadow-xl object-cover" />
-          <p class="text-lg font-semibold mt-2">Coat</p>
-          <div class="flex items-center justify-center text-center gap-2 my-2">
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-            <StarIcon class="w-3 h-3 text-yellow-400" />
-          </div>
-          <p class="text-xs text-gray-600">₦2573</p>
-        </div>
-      </div>
+
     </div>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useWishlistStore } from '@/store/wishlistStore'
-import { HeartIcon, StarIcon } from '@heroicons/vue/24/outline'
+import { HeartIcon, StarIcon, ChevronDownIcon, ArrowLeftIcon } from '@heroicons/vue/24/outline'
 import { HeartIcon as HeartIconSolid } from '@heroicons/vue/24/solid'
 import { useToast } from 'vue-toastification'
 const toast = useToast()
@@ -197,12 +83,15 @@ export default {
   components: {
     StarIcon,
     HeartIcon,
-    HeartIconSolid
-    // ArrowLeftIcon
+    HeartIconSolid,
+    // ChevronDownIcon
+    ArrowLeftIcon
   },
   setup() {
     const posts = ref([])
     const loading = ref(true)
+    const selectedCategory = ref('')
+    const searchQuery = ref('')
 
     const wishlist = useWishlistStore()
 
@@ -219,9 +108,6 @@ export default {
 
       toast.success('Added to Wishlist!')
     }
-
-
-
 
     const isInWishlist = (id) => {
       if (!id) return false; // prevent errors from undefined/null id
@@ -254,6 +140,25 @@ export default {
       }).format(price)
     }
 
+    // 🔎 Get unique categories for dropdown
+    const uniqueCategories = computed(() => {
+  const all = posts.value.map(post => post.category?.name || 'Uncategorized')
+  return [...new Set(all)]
+})
+
+    // 🔍 Filtered results
+    const filteredPosts = computed(() => {
+  return posts.value.filter(post => {
+    const postCategoryName = post.category?.name || 'Uncategorized'
+    const matchesCategory = selectedCategory.value
+      ? postCategoryName === selectedCategory.value
+      : true
+
+    const matchesName = post.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+    return matchesCategory && matchesName
+  })
+})
+
     onMounted(() => {
       fetchPosts()
     })
@@ -266,6 +171,10 @@ export default {
       wishlist,
       isInWishlist,
       removeFromWishlist,
+      selectedCategory,
+      searchQuery,
+      filteredPosts,
+      uniqueCategories
     }
   }
 }
