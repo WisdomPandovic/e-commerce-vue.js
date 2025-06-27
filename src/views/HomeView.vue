@@ -2,7 +2,6 @@
   <div class="bg-gray-100">
     <HomeBanner />
     <div class="max-w-6xl mx-auto px-4 py-8 my-5">
-
       <div v-if="loading" class="flex justify-center items-center h-40">
             <div class="w-12 h-12 border-4 border-yellow-500 border-dashed rounded-full animate-spin"></div>
         </div>
@@ -10,7 +9,7 @@
         <h2 class="sm:text-2xl text-lg font-bold text-center my-6">
           Details with Eco-friendly Materials
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <!-- Left 4 items -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
             <div v-for="(product) in neophyteProducts.slice(0, 4)" :key="product._id" class="text-center bg-white p-2">
@@ -22,7 +21,7 @@
 
               <HeartIconSolid v-else @click.stop.prevent="removeFromWishlist(product._id)"
                 class="w-10 h-10 p-2 bg-white text-red-600 border rounded-full border-red-300 bg-red-100 absolute top-2 right-2 z-10 cursor-pointer" />
-                  <img :src="product.images[0]" :alt="product.name" class="w-full h-44 object-cover rounded-lg" />
+                  <img :src="product.images[0]" :alt="product.name" class="w-full h-44 object-cover shadow-xl rounded-lg" />
                   <p class="text-sm font-semibold truncate mt-2">{{ product.name }}</p>
                   <div class="flex items-center justify-center text-center gap-2 my-2">
                     <StarIcon class="w-3 h-3 text-yellow-400" />
@@ -48,7 +47,7 @@
               <HeartIconSolid v-else @click.stop.prevent="removeFromWishlist(neophyteProducts[4]._id)"
                 class="w-10 h-10 p-2 bg-white text-red-600 border rounded-full border-red-300 bg-red-100 absolute top-2 right-2 z-10 cursor-pointer" />
                 <img :src="neophyteProducts[4].images[0]" :alt="neophyteProducts[4].name"
-                  class="w-full h-[450px] object-cover rounded-lg" />
+                  class="w-full h-[450px] object-cover shadow-xl rounded-lg" />
                 <p class="text-lg font-semibold truncate mt-4">{{ neophyteProducts[4].name }}</p>
                 <div class="flex items-center justify-center text-center gap-2 my-2">
                   <StarIcon class="w-3 h-3 text-yellow-400" />
@@ -73,7 +72,7 @@
 
               <HeartIconSolid v-else @click.stop.prevent="removeFromWishlist(product._id)"
                 class="w-10 h-10 p-2 bg-white text-red-600 border rounded-full border-red-300 bg-red-100 absolute top-2 right-2 z-10 cursor-pointer" />
-                  <img :src="product.images[0]" :alt="product.name" class="w-full h-44 object-cover rounded-lg" />
+                  <img :src="product.images[0]" :alt="product.name" class="w-full h-44 object-cover shadow-xl rounded-lg" />
                   <p class="text-sm font-semibold truncate mt-2">{{ product.name }}</p>
                   <div class="flex items-center justify-center text-center gap-2 my-2">
                     <StarIcon class="w-3 h-3 text-yellow-400" />
@@ -89,6 +88,9 @@
           </div>
         </div>
       </div>
+      
+
+      
 
       <!-- Limted Offer -->
       <div class="grid grid-cols-1 md:grid-cols-2">

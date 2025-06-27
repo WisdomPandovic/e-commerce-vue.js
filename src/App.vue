@@ -50,7 +50,7 @@ nav {
       <!-- Right: Icons -->
       <div class="flex items-center space-x-4 absolute right-4">
         <!-- 🔍 Search Box -->
-        <form @submit.prevent="handleSearch" class="flex items-center">
+        <form @submit.prevent="handleSearch" class="hidden md:flex items-center">
           <!-- <input v-model="searchQuery" type="text" placeholder="Search..."
           class="hidden md:block border border-gray-300 px-3 py-1 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" /> -->
           <input v-model="searchTerm" @keyup.enter="goToSearch" type="text" placeholder="Search products..."
@@ -98,12 +98,27 @@ nav {
       <router-link @click="closeMenu" to="/" class="block hover:text-blue-600">Home</router-link>
       <router-link @click="closeMenu" to="/products" class="block hover:text-blue-600">Products</router-link>
       <router-link @click="closeMenu" to="/about" class="block hover:text-blue-600">About</router-link>
-      <router-link @click="closeMenu" to="/cart" class="block hover:text-blue-600 flex items-center gap-1">
-        <ShoppingCartIcon class="w-5 h-5" />
+      <router-link @click="closeMenu" to="/cart" class="block hover:text-blue-600 flex items-center gap-1 relative">
+        <!-- Cart Icon Wrapper with relative positioning -->
+        <div class="relative">
+          <ShoppingCartIcon class="w-5 h-5" />
+
+          <!-- Badge positioned correctly relative to icon -->
+          <span v-if="cart.totalItems > 0"
+            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5">
+            {{ cart.items.length }}
+          </span>
+        </div>
       </router-link>
       <router-link to="/wishlist" class="block hover:text-blue-600 flex items-center gap-1">
         <HeartIcon class="w-6 h-6 " />
       </router-link>
+      <form @submit.prevent="handleSearch" class="flex items-center">
+        <!-- <input v-model="searchQuery" type="text" placeholder="Search..."
+          class="hidden md:block border border-gray-300 px-3 py-1 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" /> -->
+        <input v-model="searchTerm" @keyup.enter="goToSearch" type="text" placeholder="Search products..."
+          class="w-full border px-3 py-1 rounded text-sm" />
+      </form>
     </div>
 
     <!-- Route View -->
