@@ -88,9 +88,6 @@
           </div>
         </div>
       </div>
-      
-
-      
 
       <!-- Limted Offer -->
       <div class="grid grid-cols-1 md:grid-cols-2">
@@ -282,28 +279,28 @@
 
         </div>
         <div class="grid grid-cols-1 md:grid-cols-4 my-6">
-          <div>
+          <div class="text-center sm:text-left flex flex-col items-center sm:items-start">
             <div class="bg-white p-1.5 rounded inline-block">
               <ShieldCheckIcon class="w-6 h-6 text-yellow-400 font-bold" />
             </div>
             <h2 class="text-black text-sm font-bold my-3">Original Products</h2>
             <p class="text-gray-400 text-xs">We provide money back guarantee if the product is not Original</p>
           </div>
-          <div>
+          <div class="text-center sm:text-left flex flex-col items-center sm:items-start">
             <div class="bg-white p-1.5 rounded inline-block">
               <CheckBadgeIcon class="w-6 h-6 text-yellow-400 font-bold" />
             </div>
             <h2 class="text-black text-sm font-bold my-3">Satisfaction Guaranteed</h2>
             <p class="text-gray-400 text-xs">We provide money back guarantee if the product is not Original</p>
           </div>
-          <div>
+          <div class="text-center sm:text-left flex flex-col items-center sm:items-start">
             <div class="bg-white p-1.5 rounded inline-block">
               <SparklesIcon class="w-6 h-6 text-yellow-400 font-bold" />
             </div>
             <h2 class="text-black text-sm font-bold my-3">New Arrival everyday</h2>
             <p class="text-gray-400 text-xs">We provide money back guarantee if the product is not Original</p>
           </div>
-          <div>
+          <div class="text-center sm:text-left flex flex-col items-center sm:items-start">
             <div class="bg-white p-1.5 rounded inline-block">
               <TruckIcon class="w-6 h-6 text-yellow-400 font-bold" />
             </div>

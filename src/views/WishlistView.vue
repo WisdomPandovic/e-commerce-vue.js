@@ -19,35 +19,43 @@
         <div
           v-for="product in wishlist.items"
           :key="product._id"
-          class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center border p-4 rounded shadow"
+          class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center border p-4 rounded shadow relative"
         >
-          <!-- Image -->
-          <div class="flex items-center gap-2">
+          <!-- Image with mobile remove button -->
+          <div class="relative flex items-center gap-2">
+            <!-- Mobile-only remove button -->
+            <button
+              class="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-700 transition md:hidden"
+              @click="removeFromWishlist(product._id)"
+            >
+              <XCircleIcon class="w-5 h-5" />
+            </button>
+  
             <router-link :to="`/productDetails/${product._id}`">
               <img
                 :src="product.images[0] || 'https://via.placeholder.com/300x200?text=No+Image'"
                 :alt="product.name"
-                class="w-full sm:w-20 h-20 object-cover rounded"
+                class="w-full h-full sm:w-20 sm:h-20 object-cover rounded-lg shadow"
               />
             </router-link>
           </div>
   
           <!-- Name -->
-          <h2 class="text-sm font-bold truncate">{{ product.name }}</h2>
+          <h2 class="text-sm font-bold truncate text-center md:text-left">{{ product.name }}</h2>
   
           <!-- Price -->
-          <p class="text-sm text-gray-600">{{ formatPrice(product.price) }}</p>
+          <p class="text-sm text-gray-600 text-center md:text-left">{{ formatPrice(product.price) }}</p>
   
-          <!-- Actions -->
-          <div class="flex gap-2">
+          <!-- Actions (Desktop only) -->
+          <div class="flex gap-2 justify-start ">
             <button
-              class="bg-yellow-500 text-xs font-bold px-3 py-2 rounded hover:bg-black hover:text-white transition"
+              class="w-full md:w-auto bg-black text-white text-xs font-bold px-3 py-2 rounded hover:bg-yellow-500 hover:text-white transition"
               @click="addToCartHandler(product)"
             >
               Add to Bag
             </button>
             <button
-              class="bg-red-500 text-white rounded-full p-1 hover:bg-red-700 transition"
+              class="bg-red-500 text-white rounded-full p-1 hover:bg-red-700 transition hidden md:inline-flex"
               @click="removeFromWishlist(product._id)"
             >
               <XCircleIcon class="w-5 h-5" />
@@ -56,7 +64,7 @@
         </div>
       </div>
     </div>
-  </template>  
+  </template>   
   
   <script>
   import { XCircleIcon } from '@heroicons/vue/24/outline'
