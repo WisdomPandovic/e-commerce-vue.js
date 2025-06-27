@@ -27,7 +27,7 @@
           <div
             v-for="item in featuredProducts"
             :key="item._id"
-            class="min-w-[33.3333%] bg-white p-2 rounded shadow-sm"
+            class="min-w-full sm:min-w-[33.3333%] bg-white p-2 rounded shadow-sm"
           >
             <router-link :to="`/productDetails/${item._id}`">
             <img :src="item.images[0]" :alt="item.name" class="w-full h-60 object-cover rounded mb-3" />
