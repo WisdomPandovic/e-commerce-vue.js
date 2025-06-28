@@ -110,7 +110,7 @@ nav {
           </span>
         </div>
       </router-link>
-      <router-link to="/wishlist" class="block hover:text-blue-600 flex items-center gap-1">
+      <router-link @click="closeMenu" to="/wishlist" class="block hover:text-blue-600 flex items-center gap-1">
         <HeartIcon class="w-6 h-6 " />
       </router-link>
       <form @submit.prevent="handleSearch" class="flex items-center">
