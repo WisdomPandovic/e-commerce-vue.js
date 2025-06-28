@@ -57,12 +57,12 @@ nav {
             class="border px-3 py-1 rounded text-sm" />
         </form>
         <router-link to="/wishlist" class="hover:text-blue-600">
-          <HeartIcon class="w-6 h-6 hidden md:flex text-yellow-500 cursor-pointer hover:text-blue-600" />
+          <HeartIcon class="w-5 h-5 hidden md:flex text-black cursor-pointer hover:text-blue-600" />
         </router-link>
 
         <router-link to="/cart" class="relative hidden md:flex ">
           <!-- Cart Icon -->
-          <ShoppingCartIcon class="w-6 h-6 text-gray-700 hover:text-blue-600" />
+          <ShoppingCartIcon class="w-5 h-5text-gray-700 hover:text-blue-600" />
 
           <!-- Badge -->
           <span v-if="cart.totalItems > 0"
@@ -74,7 +74,7 @@ nav {
 
         <!-- User Dropdown -->
         <div class="relative group" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
-          <UserCircleIcon class="w-6 h-6 text-gray-700 cursor-pointer hover:text-blue-600" />
+          <UserCircleIcon class="w-5 h-5text-gray-700 cursor-pointer hover:text-blue-600" />
 
           <div v-show="showDropdown"
             class="absolute right-0 mt-2 w-40 bg-white border rounded shadow-md text-sm text-gray-700 z-50">
@@ -111,7 +111,7 @@ nav {
         </div>
       </router-link>
       <router-link @click="closeMenu" to="/wishlist" class="block hover:text-blue-600 flex items-center gap-1">
-        <HeartIcon class="w-6 h-6 " />
+        <HeartIcon class="w-5 h-5" />
       </router-link>
       <form @submit.prevent="handleSearch" class="flex items-center">
         <!-- <input v-model="searchQuery" type="text" placeholder="Search..."
