@@ -108,13 +108,9 @@
                                     }" />
                                 </div> -->
                                 <div>
-  <label for="phone" class="block text-sm font-medium mb-1">Phone Number</label>
-  <VueTelInput
-    v-model="phone"
-    class="mb-4"
-    inputoptions="{style: 'width: 100%; padding: 0.75rem; border-radius: 9999px;'}"
-  />
-</div>
+                                    <label for="phone" class="block text-sm font-medium mb-1">Phone Number</label>
+                                    <VueTelInput v-model="phone" :input-options="{ showDialCode: true }" />
+                                </div>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <!-- <div>
@@ -262,7 +258,7 @@
                                         class="w-full p-3 border border-gray-300 rounded-full mb-4 bg-white text-sm">
                                         <option value="" disabled>Select your country</option>
                                         <option v-for="country in countries" :key="country" :value="country">{{ country
-                                            }}</option>
+                                        }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -335,3 +331,24 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+::v-deep(.vti__input) {
+  width: 100%;
+  padding: 0.75rem; /* p-3 */
+  border: 1px solid #d1d5db; /* border-gray-300 */
+  border-radius: 9999px; /* rounded-full */
+  font-size: 0.875rem; /* text-sm */
+  background-color: white;
+}
+
+::v-deep(.vti__dropdown) {
+  border-radius: 9999px;
+}
+
+::v-deep(.vti__dropdown-list) {
+  max-height: 15rem; /* max-h-60 */
+  overflow-y: auto;
+}
+</style>
+
