@@ -2,8 +2,8 @@
   <div class="about">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
       <div class="flex items-center justify-center p-2">
-        <img src="images/customer-photos (5).jpg" alt="Signup Visual"
-          class="w-full h-full rounded-lg shadow-xl max-w-md" />
+        <img src="images/vintage.jpg" alt="Vintage Wear"
+          class="w-full h-90 rounded-lg shadow-xl max-w-md" loading="lazy"/>
       </div>
       <div class="my-10">
         <div class="p-2">
@@ -33,7 +33,7 @@
               <a href="/products" class="">Explore the Collections</a></button>
           </div>
           <div class="flex items-center justify-center p-2">
-            <img src="images/black.jpg" alt="Signup Visual" class="w-full h-80 rounded-lg shadow-xl object-fit" />
+            <img src="images/women-fashion.jpg" alt="Women Fashion" class="w-full h-80 rounded-lg shadow-xl object-fit" loading="lazy" />
           </div>
         </div>
       </div>

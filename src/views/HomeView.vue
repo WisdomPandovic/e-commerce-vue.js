@@ -265,8 +265,8 @@
 
           <!-- Left Text -->
           <div class="text-center sm:text-left text-black text-2xl font-bold md:w-1/2 md:pr-4 sm:items-start">
-            <h2>We provide best</h2>
-            <h2>customer experience</h2>
+            <h2 class="text-center sm:text-left px-8 sm:px-1">We provide best </h2>
+            <h2 class="text-center sm:text-left px-8 sm:px-1">customer experience</h2>
           </div>
 
           <!-- Vertical Line -->
