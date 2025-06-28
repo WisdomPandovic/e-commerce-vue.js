@@ -264,7 +264,7 @@
         <div class="flex flex-col md:flex-row items-start md:items-center">
 
           <!-- Left Text -->
-          <div class="text-black text-2xl font-bold md:w-1/2 md:pr-4">
+          <div class="text-center sm:text-left text-black text-2xl font-bold md:w-1/2 md:pr-4 sm:items-start">
             <h2>We provide best</h2>
             <h2>customer experience</h2>
           </div>
@@ -273,7 +273,7 @@
           <div class="hidden md:block w-1 h-12 bg-gray-600 mx-4 rounded"></div>
 
           <!-- Right Text -->
-          <div class="text-xs md:w-1/2 md:pl-4">
+          <div class="text-center sm:text-left text-xs md:w-1/2 md:pl-4 sm:items-start">
             <p>We make sure our customers have the best shopping experience</p>
           </div>
 

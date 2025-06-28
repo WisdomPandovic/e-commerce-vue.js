@@ -16,7 +16,7 @@
         <!-- Filter Controls -->
         <div class="flex flex-wrap gap-2 items-center">
           <!-- Filter by Category -->
-          <select v-model="selectedCategory" class="border px-3 py-1 rounded text-sm">
+          <select v-model="selectedCategory" class="sm:w-auto w-full border px-3 py-1 rounded text-sm">
             <option value="">All Categories</option>
             <option v-for="category in uniqueCategories" :key="category" :value="category">
               {{ category }}
@@ -25,7 +25,7 @@
 
           <!-- Filter by Name -->
           <input v-model="searchQuery" type="text" placeholder="Search name..."
-            class="border px-3 py-1 rounded text-sm" />
+            class="sm:w-auto w-full border px-3 py-1 rounded text-sm" />
         </div>
       </div>
 

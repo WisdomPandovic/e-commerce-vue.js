@@ -30,7 +30,7 @@
             class="min-w-full sm:min-w-[33.3333%] bg-white p-2 rounded shadow-sm"
           >
             <router-link :to="`/productDetails/${item._id}`">
-            <img :src="item.images[0]" :alt="item.name" class="w-full h-60 object-cover rounded mb-3" />
+            <img :src="item.images[0]" :alt="item.name" class="w-full aspect-[3/2] object-cover rounded mb-3" />
         </router-link>
             <div class="flex justify-between items-center">
               <div class="flex-1 min-w-0">
