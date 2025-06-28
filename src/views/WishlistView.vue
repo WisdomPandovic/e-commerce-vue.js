@@ -27,7 +27,7 @@
             <XCircleIcon class="w-5 h-5" />
           </button>
           <div class="flex gap-2  ">
-            <button class=" text-white rounded-full p-1  transition hidden md:inline-flex"
+            <button class=" text-white rounded-full p-1 my-4 transition hidden md:inline-flex"
               @click="removeFromWishlist(product._id)">
               <TrashIcon class="w-5 h-5 text-black hover:text-red-700" />
             </button>

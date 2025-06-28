@@ -40,6 +40,7 @@
           <ul class="space-y-1 text-sm text-gray-300">
             <li><router-link to="/">Home</router-link></li>
             <li><router-link to="/products">Shop</router-link></li>
+            <li><router-link to="/profile">Profile</router-link></li>
             <li><router-link to="/about">About Us</router-link></li>
             <li><router-link to="/contact">Contact</router-link></li>
           </ul>
