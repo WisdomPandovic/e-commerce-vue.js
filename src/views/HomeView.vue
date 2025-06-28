@@ -115,7 +115,7 @@
               <HeartIcon
                 class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
               <img src="images/Tailored Jacket.png" alt="Tailored Jacket"
-                class="w-full h-44 rounded-lg shadow-xl object-cover cursor-pointer" />
+                class="w-full h-44 rounded-lg shadow-xl object-cover cursor-pointer" loading="lazy"/>
               <p class="text-lg font-semibold mt-2 truncate">Coat</p>
               <div class="flex items-center justify-center text-center gap-2 my-2">
                 <StarIcon class="w-3 h-3 text-yellow-400 font-bold" />
@@ -131,7 +131,7 @@
               <HeartIcon
                 class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
               <img src="images/vintage.jpg" alt="Vintage"
-                class="w-full h-44 rounded-lg shadow-xl object-cover cursor-pointer" />
+                class="w-full h-44 rounded-lg shadow-xl object-cover cursor-pointer" loading="lazy"/>
               <p class="text-lg font-semibold mt-2 truncate">Vintage Shirt</p>
               <div class="flex items-center justify-center text-center gap-2 my-2">
                 <StarIcon class="w-3 h-3 text-yellow-400" />
@@ -147,7 +147,7 @@
               <HeartIcon
                 class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
               <img src="images/Pink Jacket.jpg" alt="Pink Jacket"
-                class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" />
+                class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" loading="lazy"/>
               <p class="text-lg font-semibold mt-2 truncate">Pink Jacket</p>
               <div class="flex items-center justify-center text-center gap-2 my-2">
                 <StarIcon class="w-3 h-3 text-yellow-400" />
@@ -163,7 +163,7 @@
               <HeartIcon
                 class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
               <img src="images/Shirt & Pant.jpg" alt="Shirt & Pant"
-                class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" />
+                class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" loading="lazy"/>
               <p class="text-lg font-semibold mt-2 truncate">Shirt & Pant</p>
               <div class="flex items-center justify-center text-center gap-2 my-2">
                 <StarIcon class="w-3 h-3 text-yellow-400" />
@@ -179,7 +179,7 @@
             <!-- Heart Icon -->
             <HeartIcon
               class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-            <img src="images/coat.jpg" alt="Coat" class="w-full h-auto rounded-lg shadow-xl max-w-md cursor-pointer" />
+            <img src="images/coat.jpg" alt="Coat" class="w-full h-auto rounded-lg shadow-xl max-w-md cursor-pointer" loading="lazy"/>
             <p class="text-lg font-semibold mt-2 truncate">Coat</p>
             <div class="flex items-center justify-center text-center gap-2 my-2">
               <StarIcon class="w-3 h-3 text-yellow-400" />
@@ -196,7 +196,7 @@
               <HeartIcon
                 class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
               <img src="images/Bomber Jacket.png" alt="Bomber Jacket"
-                class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" />
+                class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" loading="lazy"/>
               <p class="text-lg font-semibold mt-2 truncate">Bomber Jacket</p>
               <div class="flex items-center justify-center text-center gap-2 my-2">
                 <StarIcon class="w-3 h-3 text-yellow-400" />
@@ -212,7 +212,7 @@
               <HeartIcon
                 class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
               <img src="images/Colored Hat.jpg" alt="Colored Hat"
-                class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" />
+                class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" loading="lazy"/>
               <p class="text-lg font-semibold mt-2 truncate">Colored Hat</p>
               <div class="flex items-center justify-center text-center gap-2 my-2">
                 <StarIcon class="w-3 h-3 text-yellow-400" />
@@ -228,7 +228,7 @@
               <HeartIcon
                 class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
               <img src="images/Arab Shopping Bag.jpg" alt="Arab Shopping Bag"
-                class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" />
+                class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" loading="lazy" />
               <p class="text-lg font-semibold mt-2 truncate">Arab Shopping Bag</p>
               <div class="flex items-center justify-center text-center gap-2 my-2">
                 <StarIcon class="w-3 h-3 text-yellow-400" />
@@ -244,7 +244,7 @@
               <HeartIcon
                 class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
               <img src="images/underwear.jpg" alt="Underwear"
-                class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" />
+                class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" loading="lazy"/>
               <p class="text-lg font-semibold mt-2 truncate">Underwear</p>
               <div class="flex items-center justify-center text-center gap-2 my-2">
                 <StarIcon class="w-3 h-3 text-yellow-400" />
