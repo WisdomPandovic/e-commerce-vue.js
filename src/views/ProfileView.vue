@@ -246,7 +246,7 @@
                                         <p>13:45, May 10, 2025</p>
                                     </div>
                                 </div>
-                                <div class="border border-gray-400 p-2 rounded text-sm font-bold">
+                                <div class="border border-gray-400 p-2 rounded text-sm font-bold mb-2">
                                     <CloudDownloadIcon class="h-5 w-5" />
                                     <p>Download Invoice</p>
                                 </div>
