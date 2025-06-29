@@ -147,8 +147,182 @@
                 </div>
 
                 <div v-else-if="activeTab === 'orders'">
-                    <h2 class="text-xl font-bold mb-4">My Orders</h2>
-                    <p>Orders content here...</p>
+                    <div>
+                        <div class="border border-gray-400 p-3 rounded-lg mb-3">
+                            <!-- <h2 class="text-xl font-bold mb-4">My Orders</h2> -->
+                            <div class="sm:flex block justify-between items-center">
+                                <div>
+                                    <h2 class="font-bold">Order #: 113421</h2>
+                                    <div class="sm:flex block gap-2 text-sm mb-4 mt-2">
+                                        <p>4 Products</p> <span class="hidden md:flex">/</span>
+                                        <p>By John Doe</p> <span class="hidden md:flex">/</span>
+                                        <p>13:45, May 10, 2025</p>
+                                    </div>
+                                </div>
+                                <div class="border border-gray-400 p-2 rounded text-sm font-bold mb-2">
+                                    <CloudDownloadIcon class="h-5 w-5" />
+                                    <p>Download Invoice</p>
+                                </div>
+                            </div>
+                            <div class="border-b border-black font-bold mb-4"></div>
+                            <div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <p class="text-sm ">Status:</p>
+                                    <p class="text-xs">On the Way</p>
+                                </div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <p class="text-sm ">Date of Delivery:</p>
+                                    <p class="text-xs">Saturday, May 10, 2025</p>
+                                </div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <p class="text-sm ">Deliverd to:</p>
+                                    <p class="text-xs">Beauty Street, Pluto 3A, PO:1223</p>
+                                </div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <p class="text-sm font-bold">Total:</p>
+                                    <p class="text-xs">I34904</p>
+                                </div>
+                            </div>
+                            <div class="border-b border-black font-bold mb-4"></div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="flex gap-3">
+                                    <img src="images/Bomber Jacket.png" alt="Bomber Jacket"
+                                        class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
+                                    <div>
+                                        <h2 class="font-bold">Bomber Jacket</h2>
+                                        <div class="text-sm text-gray-500">
+                                            <p>Quantity: 1X = USD 340</p>
+                                            <p>Color: Black</p>
+                                            <p>Size: Large</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3">
+                                    <img src="images/Shirt & Pant.jpg" alt="Shirt & Pant"
+                                        class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
+                                    <div>
+                                        <h2 class="font-bold">Shirt & Pant</h2>
+                                        <div class="text-sm text-gray-500">
+                                            <p>Quantity: 1X = USD 340</p>
+                                            <p>Color: Black</p>
+                                            <p>Size: Large</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3">
+                                    <img src="images/Pink Jacket.jpg" alt="Pink Jacket"
+                                        class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
+                                    <div>
+                                        <h2 class="font-bold">Pink Jacket</h2>
+                                        <div class="text-sm text-gray-500">
+                                            <p>Quantity: 1X = USD 340</p>
+                                            <p>Color: Black</p>
+                                            <p>Size: Large</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3">
+                                    <img src="images/Coat.jpg" alt="Coat"
+                                        class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
+                                    <div>
+                                        <h2 class="font-bold">Coat</h2>
+                                        <div class="text-sm text-gray-500">
+                                            <p>Quantity: 1X = USD 340</p>
+                                            <p>Color: Black</p>
+                                            <p>Size: Large</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border border-gray-400 p-3 rounded-lg mb-3">
+                            <!-- <h2 class="text-xl font-bold mb-4">My Orders</h2> -->
+                            <div class="sm:flex block gap-2 justify-between items-center">
+                                <div>
+                                    <h2 class="font-bold">Order #: 113421</h2>
+                                    <div class="sm:flex block gap-2 gap-2 text-sm mb-4 mt-2">
+                                        <p>4 Products</p> <span class="hidden md:flex">/</span>
+                                        <p>By John Doe</p> <span class="hidden md:flex">/</span>
+                                        <p>13:45, May 10, 2025</p>
+                                    </div>
+                                </div>
+                                <div class="border border-gray-400 p-2 rounded text-sm font-bold">
+                                    <CloudDownloadIcon class="h-5 w-5" />
+                                    <p>Download Invoice</p>
+                                </div>
+                            </div>
+                            <div class="border-b border-black font-bold mb-4"></div>
+                            <div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <p class="text-sm ">Status:</p>
+                                    <p class="text-xs">On the Way</p>
+                                </div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <p class="text-sm ">Date of Delivery:</p>
+                                    <p class="text-xs">Saturday, May 10, 2025</p>
+                                </div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <p class="text-sm ">Deliverd to:</p>
+                                    <p class="text-xs">Beauty Street, Pluto 3A, PO:1223</p>
+                                </div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <p class="text-sm font-bold">Total:</p>
+                                    <p class="text-xs">I34904</p>
+                                </div>
+                            </div>
+                            <div class="border-b border-black font-bold mb-4"></div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="flex gap-3">
+                                    <img src="images/Tailored Jacket.png" alt="Tailored Jacket"
+                                        class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
+                                    <div>
+                                        <h2 class="font-bold">Tailored Jacket</h2>
+                                        <div class="text-sm text-gray-500">
+                                            <p>Quantity: 1X = USD 340</p>
+                                            <p>Color: Black</p>
+                                            <p>Size: Large</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3">
+                                    <img src="images/vintage.jpg" alt="Vintage Shirt"
+                                        class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
+                                    <div>
+                                        <h2 class="font-bold">Vintage Shirt</h2>
+                                        <div class="text-sm text-gray-500">
+                                            <p>Quantity: 1X = USD 340</p>
+                                            <p>Color: Black</p>
+                                            <p>Size: Large</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3">
+                                    <img src="images/Arab Shopping Bag.jpg" alt="Arab Shopping Bag"
+                                        class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
+                                    <div>
+                                        <h2 class="font-bold">Arab Shopping Bag</h2>
+                                        <div class="text-sm text-gray-500">
+                                            <p>Quantity: 1X = USD 340</p>
+                                            <p>Color: Black</p>
+                                            <p>Size: Large</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3">
+                                    <img src="images/Colored Hat.jpg" alt="Colored Hat"
+                                        class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
+                                    <div>
+                                        <h2 class="font-bold">Colored Hat</h2>
+                                        <div class="text-sm text-gray-500">
+                                            <p>Quantity: 1X = USD 340</p>
+                                            <p>Color: Black</p>
+                                            <p>Size: Large</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div v-else-if="activeTab === 'address'">
@@ -258,7 +432,7 @@
                                         class="w-full p-3 border border-gray-300 rounded-full mb-4 bg-white text-sm">
                                         <option value="" disabled>Select your country</option>
                                         <option v-for="country in countries" :key="country" :value="country">{{ country
-                                        }}</option>
+                                            }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -278,7 +452,7 @@
 
 <script>
 import Wishlist from '@/components/AppWishlist.vue'
-import { PencilIcon, ArrowRightIcon, ArrowLeftIcon, XCircleIcon, TrashIcon } from '@heroicons/vue/24/outline'
+import { PencilIcon, ArrowRightIcon, ArrowLeftIcon, XCircleIcon, TrashIcon, CloudDownloadIcon } from '@heroicons/vue/24/outline'
 // import { VueTelInput } from 'vue-tel-input'
 // import 'vue-tel-input/vue-tel-input.css'
 import { VueTelInput } from 'vue-tel-input'
@@ -293,7 +467,8 @@ export default {
         XCircleIcon,
         ArrowLeftIcon,
         ArrowRightIcon,
-        VueTelInput
+        VueTelInput,
+        CloudDownloadIcon
     },
     name: 'ProfilePage',
     data() {
@@ -334,21 +509,25 @@ export default {
 
 <style scoped>
 ::v-deep(.vti__input) {
-  width: 100%;
-  padding: 0.75rem; /* p-3 */
-  border: 1px solid #d1d5db; /* border-gray-300 */
-  border-radius: 9999px; /* rounded-full */
-  font-size: 0.875rem; /* text-sm */
-  background-color: white;
+    width: 100%;
+    padding: 0.75rem;
+    /* p-3 */
+    border: 1px solid #d1d5db;
+    /* border-gray-300 */
+    border-radius: 9999px;
+    /* rounded-full */
+    font-size: 0.875rem;
+    /* text-sm */
+    background-color: white;
 }
 
 ::v-deep(.vti__dropdown) {
-  border-radius: 9999px;
+    border-radius: 9999px;
 }
 
 ::v-deep(.vti__dropdown-list) {
-  max-height: 15rem; /* max-h-60 */
-  overflow-y: auto;
+    max-height: 15rem;
+    /* max-h-60 */
+    overflow-y: auto;
 }
 </style>
-
