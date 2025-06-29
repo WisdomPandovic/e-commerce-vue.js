@@ -74,13 +74,15 @@ nav {
 
         <!-- User Dropdown -->
         <div class="relative group" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
-          <UserCircleIcon class="w-5 h-5text-gray-700 cursor-pointer hover:text-blue-600" />
+          <UserCircleIcon class="w-5 h-5 text-gray-700 cursor-pointer hover:text-blue-600" />
 
           <div v-show="showDropdown"
             class="absolute right-0 mt-2 w-40 bg-white border rounded shadow-md text-sm text-gray-700 z-50">
-            <router-link to="/profile" class="block px-4 py-2 hover:bg-gray-100">Profile</router-link>
-            <router-link to="/login" class="block px-4 py-2 hover:bg-gray-100">Sign In</router-link>
-            <button @click="logout" class="block w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+            <router-link to="/profile" @click="closeDropdown"
+              class="block px-4 py-2 hover:bg-gray-100">Profile</router-link>
+            <router-link to="/login" @click="closeDropdown" class="block px-4 py-2 hover:bg-gray-100">Sign
+              In</router-link>
+            <button @click="handleLogout" class="block w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
           </div>
         </div>
 
@@ -155,6 +157,10 @@ const goToSearch = () => {
   if (searchTerm.value.trim()) {
     router.push({ path: '/search', query: { q: searchTerm.value } })
   }
+}
+
+function closeDropdown() {
+  showDropdown.value = false;
 }
 
 const logout = () => {
