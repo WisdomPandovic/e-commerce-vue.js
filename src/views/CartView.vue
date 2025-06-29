@@ -10,8 +10,7 @@
             <p class="font-semibold text-xs">Cart</p>
         </div>
         <h2 class="text-3xl uppercase font-bold my-3">My Cart</h2>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <!-- Left Div: 2/3 of width -->
+        <div v-if="cart.items.length > 0" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <!-- Left Div: 2/3 of width on large screens, full width on mobile -->
             <div class="lg:col-span-2 col-span-full">
                 <div v-for="(item, index) in cart.items" :key="item._id">
@@ -82,8 +81,6 @@
                 </div>
             </div>
 
-
-            <!-- Right Div: 1/3 of width -->
             <!-- Right Div: 1/3 of width on large screens, full width on mobile -->
             <div class="lg:col-span-1 col-span-full">
                 <div class="bg-gray-200 p-6 rounded w-full h-fit uppercase">
@@ -116,6 +113,15 @@
                 </div>
             </div>
         </div>
+
+        <!-- Displayed when no cart items -->
+<div v-else class="text-center my-20">
+  <h2 class="text-2xl font-semibold text-gray-600">🛒 No cart items yet</h2>
+  <p class="text-sm text-gray-500 mt-2">Start shopping and add items to your cart.</p>
+  <router-link to="/products" class="mt-4 inline-block bg-black text-white px-5 py-2 rounded-full text-sm hover:bg-gray-800">
+    Browse Products
+  </router-link>
+</div>
 
         <div class="my-9 py-9">
             <h1 class="sm:text-2xl text-lg font-bold text-center">Recommended Products</h1>
