@@ -10,22 +10,27 @@
     <!-- Right: Sign up form with animation -->
     <transition name="slide-right" appear>
       <div class="flex items-center justify-center p-2">
-        <form class="bg-white shadow-lg rounded-lg w-full max-w-md p-6 space-y-4">
+        <form class="bg-white shadow-lg rounded-lg w-full max-w-md p-6 space-y-4" @submit.prevent="handleSignup">
           <h2 class="sm:text-2xl text-md font-bold text-center text-yellow-600">Create Account</h2>
 
           <div>
-            <label class="block text-gray-700 font-semibold mb-1">Full Name</label>
-            <input type="text" placeholder="John Doe" class="w-full border border-gray-300 p-2 rounded" />
+            <label class="block text-gray-700 font-semibold mb-1">Username</label>
+            <input v-model="username" type="text" placeholder="John Doe" class="w-full border border-gray-300 p-2 rounded" />
           </div>
 
           <div>
             <label class="block text-gray-700 font-semibold mb-1">Email</label>
-            <input type="email" placeholder="you@example.com" class="w-full border border-gray-300 p-2 rounded" />
+            <input v-model="email" type="email" placeholder="you@example.com" class="w-full border border-gray-300 p-2 rounded" />
+          </div>
+
+          <div>
+            <label for="phone" class="block text-sm font-medium mb-1">Phone Number</label>
+            <VueTelInput v-model="phoneNumber" :input-options="{ showDialCode: true }" />
           </div>
 
           <div>
             <label class="block text-gray-700 font-semibold mb-1">Password</label>
-            <input type="password" placeholder="********" class="w-full border border-gray-300 p-2 rounded" />
+            <input v-model="password" type="password" placeholder="********" class="w-full border border-gray-300 p-2 rounded" />
           </div>
 
           <button type="submit"
@@ -41,11 +46,62 @@
   </div>
 </template>
 
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import axios from 'axios'
+import { useToast } from 'vue-toastification'
+import { useAuthStore } from '@/store/authStore'
+import { VueTelInput } from 'vue-tel-input'
+import 'vue-tel-input/dist/vue-tel-input.css'
+
+// Form state
+const username = ref('')
+const email = ref('')
+const password = ref('')
+const phoneNumber = ref('')
+
+// Essentials
+const toast = useToast()
+const router = useRouter()
+const auth = useAuthStore()
+
+// Handle form submission
+const handleSignup = async () => {
+  if (!username.value || !email.value || !password.value || !phoneNumber.value) {
+    toast.error('Please fill in all fields')
+    return
+  }
+
+  const cleanedPhone = phoneNumber.value.replace(/\D/g, '') // Clean phone number
+
+  try {
+    const res = await axios.post('https://neophyte-garments-react-app-api.onrender.com/api/users', {
+      username: username.value,
+      email: email.value,
+      password: password.value,
+      phoneNumber: Number(cleanedPhone),
+    })
+
+    toast.success('Account created successfully!')
+    router.push('/login')
+  } catch (err) {
+    toast.error(err.response?.data?.message || 'Signup failed')
+  }
+}
+
+</script>
+
 <script>
+
 export default {
-  name: 'SignUpView'
+  name: 'SignUpView',
+  components: {
+    VueTelInput,
+  }
 }
 </script>
+
 
 <style scoped>
 /* Animations */

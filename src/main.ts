@@ -52,12 +52,18 @@ import './assets/tailwind.css'
 import Toast from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
 
+// Vue Query setup
+import { VueQueryPlugin, QueryClient } from '@tanstack/vue-query'
+
 // Create and configure Pinia
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate) // ✅ Apply the plugin here
 
 // Create Vue app
 const app = createApp(App)
+
+// Create a QueryClient instance
+const queryClient = new QueryClient()
 
 // Use plugins
 app.use(pinia)
@@ -66,6 +72,11 @@ app.use(Toast, {
   transition: 'Vue-Toastification__fade',
   maxToasts: 3,
   newestOnTop: true,
+})
+
+// Use the VueQueryPlugin and pass the client
+app.use(VueQueryPlugin, {
+  queryClient,
 })
 
 // Mount app

@@ -4,21 +4,21 @@
       <!-- Left: Image -->
       <transition name="slide-left" appear>
         <div class="flex items-center justify-center h-full">
-          <form class="bg-white shadow-lg rounded-lg w-full max-w-md p-6 space-y-4">
+          <form class="bg-white shadow-lg rounded-lg w-full max-w-md p-6 space-y-4" @submit.prevent="handleLogin">
             <div class="my-6 text-center">
               <h2 class="sm:text-2xl text-md font-bold text-yellow-600">Welcome Back</h2>
               <p class="text-black text-sm">Login to buy product</p>
             </div>
   
             <div>
-              <label class="block text-gray-700 font-semibold mb-1">Email</label>
-              <input type="email" placeholder="you@example.com"
+              <label class="block text-gray-700 font-semibold mb-1">Username</label>
+              <input v-model="username" type="text" placeholder="you@example.com"
                 class="w-full border border-gray-300 p-2 rounded" />
             </div>
   
             <div>
               <label class="block text-gray-700 font-semibold mb-1">Password</label>
-              <input type="password" placeholder="********"
+              <input  v-model="password" type="password" placeholder="********"
                 class="w-full border border-gray-300 p-2 rounded" />
             </div>
   
@@ -45,10 +45,49 @@
   </template>
   
   <script>
-  export default {
-    name: 'LoginView'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import axios from 'axios'
+import { useToast } from 'vue-toastification'
+import { useAuthStore } from '@/store/authStore'
+
+export default {
+  name: 'LoginView',
+  setup() {
+    const username = ref('')
+    const password = ref('')
+    const toast = useToast()
+    const router = useRouter()
+    const auth = useAuthStore()
+
+    const handleLogin = async () => {
+  if (!username.value || !password.value) {
+    toast.error('Please fill in all fields')
+    return
   }
-  </script>
+
+  try {
+    // Use your actual endpoint and payload structure here
+    await auth.login({
+      username: username.value, // if your backend expects email
+      password: password.value
+    })
+
+    toast.success('Login successful!')
+    router.push('/')
+  } catch (err) {
+    toast.error(err.response?.data?.message || 'Login failed')
+  }
+}
+
+    return {
+      username,
+      password,
+      handleLogin
+    }
+  }
+}
+</script>
   
   <style scoped>
   .slide-left-enter-active,

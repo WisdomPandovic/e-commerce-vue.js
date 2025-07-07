@@ -16,33 +16,30 @@
             </div>
             <p class="font-semibold text-xs">Product Details</p>
         </div>
-        <div v-if="loading" class="flex justify-center items-center h-40">
+
+        <div v-if="isLoading" class="flex justify-center items-center h-40">
             <div class="w-12 h-12 border-4 border-yellow-500 border-dashed rounded-full animate-spin"></div>
         </div>
 
         <div v-else-if="product" class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <img :src="product.images[0]" alt="Product image" class="w-full h-full object-cover rounded-lg shadow" />
-
             <div>
-                <div>
-                    <button
-                        class="border rounded-full bg-white font-semibold text-black text-xs text-center my-3 px-4 py-2">
-                        <p>{{ product.category.name }}</p>
-                    </button>
-                </div>
+                <button
+                    class="border rounded-full bg-white font-semibold text-black text-xs text-center my-3 px-4 py-2">
+                    <p>{{ product.category.name }}</p>
+                </button>
                 <h1 class="text-lg font-bold mb-2">{{ product.name }}</h1>
-                <!-- <p class="text-sm font-semibold text-green-600 mb-4">₦{{ product.price }}</p> -->
                 <p class="text-sm font-semibold text-black mb-4">₦{{ product.price }}</p>
-
                 <div class="border rounded-full text-xs my-3 p-2">
                     <p>Order in 02:30:02 to get next day delivery</p>
                 </div>
-
                 <div>
                     <p class="text-sm">Select Size</p>
                     <!-- <div class="grid grid-cols-2 md:grid-cols-5 gap-2">
+                       
                         <button
                             class="border rounded-full bg-black text-white text-xs text-center my-3 px-2 py-4">S</button>
+                      
                         <button class="border rounded-full bg-gray-100 text-black text-xs text-center my-3 px-2 py-4">
                             <p>M</p>
                         </button>
@@ -67,56 +64,24 @@
                         </button>
                     </div>
                 </div>
-
                 <div class="flex items-center gap-2">
                     <button class="flex-1 border rounded-full bg-black text-white text-sm text-center my-3 px-4 py-3"
                         @click.stop.prevent="() => addToCartHandler(product)">
                         Add to Cart
                     </button>
-                    <!-- <HeartIcon
-                        class="w-10 h-10 p-2 text-gray-700 border rounded-full border-gray-200 hover:text-blue-600 cursor-pointer" /> -->
-                    <!-- <HeartIcon @click="addToWishlist(product)"
-                        class="w-10 h-10 p-2 text-gray-700 border rounded-full border-gray-200 hover:text-blue-600 cursor-pointer" /> -->
-                    <!-- If not in wishlist: regular icon -->
                     <HeartIcon v-if="!isInWishlist(product._id)" @click="addToWishlist(product)"
                         class="w-10 h-10 p-2 text-gray-700 border rounded-full border-gray-200 hover:text-red-500 cursor-pointer" />
-
-                    <!-- If in wishlist: red filled icon -->
                     <HeartIconSolid v-else @click="removeFromWishlist(product._id)"
                         class="w-10 h-10 p-2 text-red-600 border rounded-full border-red-300 bg-red-100 cursor-pointer" />
-
                 </div>
-
-                <!-- <div class="border border-gray-300 rounded p-3 my-3">
-                    <div class="flex justify-between items-center">
-                        <p class="font-semibold">Description Fit</p>
-                        <ChevronUpIcon class="w-5 h-5 cursor-pointer"/>
-                    </div> -->
-
-                <!-- Render paragraphs with v-html -->
-                <!-- <div class="text-gray-700 text-sm leading-relaxed space-y-3">
-                        <p v-html="formattedContent"></p>
-                    </div>
-                </div> -->
-
                 <div class="border border-gray-300 rounded-lg p-3 my-3">
                     <div class="flex justify-between items-center">
                         <p class="font-semibold">Description Fit</p>
                         <ChevronUpIcon class="w-5 h-5 cursor-pointer transition-transform duration-200"
                             :class="{ 'rotate-180': showMore }" @click="toggleDescription" />
                     </div>
-
-                    <!-- Render paragraphs with v-html -->
                     <div class="text-gray-700 text-sm leading-relaxed space-y-3 my-3" v-html="formattedContent"></div>
-
-                    <!-- <div v-if="!showMore" class="text-xs text-blue-600 mt-2 cursor-pointer" @click="toggleDescription">
-                        Show more
-                    </div> -->
-                    <!-- <div v-else class="text-xs text-blue-600 mt-2 cursor-pointer" @click="toggleDescription">
-                        Show less
-                    </div> -->
                 </div>
-
                 <div class="border border-gray-300 rounded-lg p-3 my-3">
                     <div class="flex justify-between items-center">
                         <p class="font-semibold">Shipping</p>
@@ -307,74 +272,82 @@
             </div>
         </div>
 
+        <!-- You might also like -->
         <div class="my-10 py-9">
             <h1 class="sm:text-4xl text-lg font-bold text-center">You might also like</h1>
-            <div v-if="loading" class="flex justify-center items-center h-40">
+
+            <div v-if="loading && recommendedProducts.length === 0" class="flex justify-center items-center h-40">
                 <div class="w-12 h-12 border-4 border-yellow-500 border-dashed rounded-full animate-spin"></div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-8">
+            <div v-else-if="recommendedProducts.length"
+                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-8">
                 <div v-for="item in recommendedProducts" :key="item._id"
                     class="border rounded-lg p-4 shadow hover:shadow-lg transition">
                     <img :src="item.images[0]" :alt="item.name" class="w-full h-40 object-cover rounded mb-3" />
                     <h2 class="text-sm font-semibold truncate">{{ item.name }}</h2>
-                    <!-- <p class="text-xs text-gray-500 mb-1">{{ item.category.name }}</p> -->
-                    <!-- <p v-if="item.category" class="text-xs text-gray-500 mb-1">{{ item.category.name }}</p> -->
                     <div class="flex items-center gap-2 my-2">
-                        <StarIcon class="w-5 h-5 text-yellow-400" />
-                        <StarIcon class="w-5 h-5 text-yellow-400" />
-                        <StarIcon class="w-5 h-5 text-yellow-400" />
-                        <StarIcon class="w-5 h-5 text-yellow-400" />
-                        <StarIcon class="w-5 h-5 text-yellow-400" />
+                        <StarIcon class="w-5 h-5 text-yellow-400" v-for="n in 5" :key="n" />
                     </div>
                     <p class="text-sm font-bold text-black">₦{{ item.price }}</p>
-
-                    <router-link :to="`/productDetails/${item._id}`"
+                    <router-link :to="`/productDetail/${item._id}`"
                         class="block mt-3 text-center bg-black text-white rounded-full py-2 text-sm">
                         View Product
                     </router-link>
                 </div>
             </div>
+
+            <div v-else class="text-center text-gray-500 text-sm mt-4">
+                No recommendations found.
+            </div>
         </div>
+
     </div>
 </template>
 
 <script>
-import { ref, onMounted, computed } from 'vue'
-import { watch } from 'vue'
+import { ref, computed, watch, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
-import { useCartStore } from '@/store/cartStore'
+import { useQuery } from '@tanstack/vue-query'
+import { fetchProductById, fetchProducts } from '@/hooks/product.js'
 import { useWishlistStore } from '@/store/wishlistStore'
-// import { ArrowLeftIcon } from "@vue-hero-icons/outline"
-// import { HeartIcon } from "@vue-hero-icons/outline"
-import { ChevronLeftIcon, ChevronRightIcon, StarIcon, ChevronUpIcon, HeartIcon, ArrowLeftIcon, CurrencyBangladeshiIcon, CalendarIcon, TruckIcon, InboxIcon } from '@heroicons/vue/24/outline'
-import { HeartIcon as HeartIconSolid } from '@heroicons/vue/24/solid'
-// import { ChevronUpIcon } from "@vue-hero-icons/outline"
-import { BanIcon } from "@vue-hero-icons/outline"
+import { useCartStore } from '@/store/cartStore'
 import { useToast } from 'vue-toastification'
-const toast = useToast()
+import {
+    ArrowLeftIcon,
+    ChevronUpIcon,
+    HeartIcon,
+    CurrencyBangladeshiIcon,
+    CalendarIcon,
+    TruckIcon,
+    InboxIcon,
+    StarIcon,
+    ChevronRightIcon,
+    ChevronLeftIcon,
+} from '@heroicons/vue/24/outline'
+import { HeartIcon as HeartIconSolid } from '@heroicons/vue/24/solid'
 
 export default {
     components: {
-        HeartIcon, // 👈 register it here
+        ArrowLeftIcon,
         ChevronUpIcon,
+        HeartIcon,
+        HeartIconSolid,
         CurrencyBangladeshiIcon,
         CalendarIcon,
-        TruckIcon, InboxIcon,
-        ArrowLeftIcon, StarIcon,
+        TruckIcon,
+        InboxIcon,
+        StarIcon,
         ChevronRightIcon,
         ChevronLeftIcon,
-        HeartIconSolid
-        // ArrowLeftIcon
     },
     setup() {
         const route = useRoute()
-        const product = ref(null)
-        const loading = ref(true)
+        const toast = useToast()
+        const wishlist = useWishlistStore()
+        const cart = useCartStore()
         const showMore = ref(false)
-        const scrollContainer = ref(null)
         const currentIndex = ref(0)
-        const recommendedProducts = ref([])
 
         const selectedSize = ref(null)
 
@@ -382,12 +355,34 @@ export default {
             selectedSize.value = size
         }
 
-        const cart = useCartStore()
-        const wishlist = useWishlistStore()
+        const productId = computed(() => route.params.id)
+
+        const { data: product, isLoading, refetch } = useQuery({
+            queryKey: ['product', productId],
+            queryFn: () => fetchProductById(productId.value),
+            enabled: computed(() => !!productId.value)
+        })
+
+        // ✅ FIXED missing closing parenthesis here
+        const allProductsQuery = useQuery({
+            queryKey: ['products'],
+            queryFn: fetchProducts,
+        })
+
+        const recommendedProducts = computed(() => {
+            if (!product.value || !allProductsQuery.data?.value) return []
+            return allProductsQuery.data.value
+                .filter(p =>
+                    p._id !== route.params.id &&
+                    p.category?.name === product.value.category?.name
+                )
+                .slice(0, 4)
+        })
+
+        const loading = computed(() => allProductsQuery.isLoading)
 
         const addToCartHandler = (product) => {
             cart.addToCart(product)
-            console.log('Clicked to add product:', product)
             toast.success(`${product.name} added to cart!`, {
                 timeout: 3000,
                 position: 'top-right',
@@ -399,95 +394,31 @@ export default {
             toast.success('Added to Wishlist!')
         }
 
+        const removeFromWishlist = (id) => {
+            wishlist.removeFromWishlist(id)
+            toast.info('Removed from Wishlist')
+        }
+
         const isInWishlist = (id) => {
             if (!id) return false; // prevent errors from undefined/null id
             return Array.isArray(wishlist.items) &&
                 wishlist.items.some(item => item && item._id === id)
         }
 
-        const removeFromWishlist = (id) => {
-            wishlist.removeFromWishlist(id)
-            toast.info('Removed from Wishlist')
-        }
-
         const reviews = [
-            {
-                name: 'Paul Willy',
-                rating: 5,
-                date: '12 June, 2025',
-                comment: 'Excellent product!',
-                image: '/images/2.jpg',
-            },
-            {
-                name: 'Jane Doe',
-                rating: 4,
-                date: '10 June, 2025',
-                comment: 'Good quality, arrived early.',
-                image: '/images/3.jpg',
-            },
-            {
-                name: 'John Smith',
-                rating: 5,
-                date: '08 June, 2025',
-                comment: 'Highly recommend!',
-                image: '/images/1.jpg',
-            },
-            {
-                name: 'Emily Rose',
-                rating: 4,
-                date: '05 June, 2025',
-                comment: 'Very satisfied.',
-                image: '/images/signup-image.jpg',
-            },
+            { name: 'Paul Willy', rating: 5, date: '12 June, 2025', comment: 'Excellent product!', image: '/images/2.jpg' },
+            { name: 'Jane Doe', rating: 4, date: '10 June, 2025', comment: 'Good quality, arrived early.', image: '/images/3.jpg' },
+            { name: 'John Smith', rating: 5, date: '08 June, 2025', comment: 'Highly recommend!', image: '/images/1.jpg' },
+            { name: 'Emily Rose', rating: 4, date: '05 June, 2025', comment: 'Very satisfied.', image: '/images/signup-image.jpg' },
         ]
 
         const next = () => {
-            if (currentIndex.value < reviews.length - 1) {
-                currentIndex.value++
-            }
+            if (currentIndex.value < reviews.length - 1) currentIndex.value++
         }
 
         const prev = () => {
-            if (currentIndex.value > 0) {
-                currentIndex.value--
-            }
+            if (currentIndex.value > 0) currentIndex.value--
         }
-
-        const fetchProduct = async () => {
-            try {
-                const res = await fetch('https://neophyte-garments-react-app-api.onrender.com/api/product')
-                const data = await res.json()
-                product.value = data.find(p => p._id === route.params.id)
-                // Get four other products (excluding the current one)
-                // recommendedProducts.value = data
-                //     .filter(p => p._id !== route.params.id)
-                //     .slice(0, 4)
-
-                if (product.value) {
-                    recommendedProducts.value = data
-                        .filter(p =>
-                            p._id !== route.params.id &&
-                            p.category?.name === "Neophytegarments"
-                        )
-                        .slice(0, 4) // Only 4 items
-                }
-
-                // ✅ Scroll to top after data is set
-                window.scrollTo({ top: 0, behavior: 'smooth' })
-            } catch (err) {
-                console.error('Failed to load product:', err)
-            } finally {
-                loading.value = false
-            }
-        }
-
-        onMounted(fetchProduct)
-
-        watch(() => route.params.id, (newId, oldId) => {
-            if (newId !== oldId) {
-                fetchProduct()
-            }
-        })
 
         const toggleDescription = () => {
             showMore.value = !showMore.value
@@ -495,42 +426,38 @@ export default {
 
         const formattedContent = computed(() => {
             if (!product.value?.content) return ''
-            const sentences = product.value.content
-                .split('.')
-                .filter(line => line.trim() !== '')
-                .map(sentence => sentence.trim() + '.')
-
-            const visibleSentences = showMore.value ? sentences : sentences.slice(0, 2)
-            return visibleSentences.join('</p><p>')
+            const sentences = product.value.content.split('.').filter(Boolean).map(s => s.trim() + '.')
+            const visible = showMore.value ? sentences : sentences.slice(0, 2)
+            return visible.join('</p><p>')
         })
-
-        // const scrollRight = () => {
-        //     if (scrollContainer.value) {
-        //         scrollContainer.value.scrollBy({ left: 320, behavior: 'smooth' })
-        //     }
-        // }
 
         return {
             product,
-            loading,
+            isLoading,
+            addToCartHandler,
+            addToWishlist,
+            removeFromWishlist,
+            isInWishlist,
             showMore,
             toggleDescription,
-            formattedContent, // ✅ Must return this!
+            formattedContent,
             reviews,
-            scrollContainer,
-            // scrollRight,
             currentIndex,
             next,
             prev,
             recommendedProducts,
-            addToCartHandler,
-            addToWishlist,
-            wishlist,
-            isInWishlist,
-            removeFromWishlist,
             selectedSize,
             handleSizeSelect,
+            loading // <-- also returned so you can use in your <template>
         }
     }
+
 }
+
 </script>
+
+<style scoped>
+.rotate-180 {
+    transform: rotate(180deg);
+}
+</style>
