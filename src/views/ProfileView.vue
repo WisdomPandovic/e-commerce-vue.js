@@ -50,7 +50,7 @@
                         /> -->
                                 <!-- <img src="images/2.jpg || 'https://via.placeholder.com/300x200?text=No+Image'" alt="Profile Preview"
                                 class="w-32 h-32 rounded-full object-cover cursor-pointer" /> -->
-                                <img src="images/default-avatar.jpg" alt="Profile Preview"
+                                <img src="/images/default-avatar.jpg" alt="Profile Preview"
                                     class="w-32 h-32 rounded-full object-cover cursor-pointer" />
                                 <!-- <div
                                 class="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 cursor-pointer"
@@ -186,7 +186,7 @@
                             <div class="border-b border-black font-bold mb-4"></div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div class="flex gap-3">
-                                    <img src="images/Bomber Jacket.png" alt="Bomber Jacket"
+                                    <img src="/images/Bomber Jacket.png" alt="Bomber Jacket"
                                         class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
                                     <div>
                                         <h2 class="font-bold">Bomber Jacket</h2>
@@ -198,7 +198,7 @@
                                     </div>
                                 </div>
                                 <div class="flex gap-3">
-                                    <img src="images/Shirt & Pant.jpg" alt="Shirt & Pant"
+                                    <img src="/images/Shirt & Pant.jpg" alt="Shirt & Pant"
                                         class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
                                     <div>
                                         <h2 class="font-bold">Shirt & Pant</h2>
@@ -210,7 +210,7 @@
                                     </div>
                                 </div>
                                 <div class="flex gap-3">
-                                    <img src="images/Pink Jacket.jpg" alt="Pink Jacket"
+                                    <img src="/images/Pink Jacket.jpg" alt="Pink Jacket"
                                         class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
                                     <div>
                                         <h2 class="font-bold">Pink Jacket</h2>
@@ -222,7 +222,7 @@
                                     </div>
                                 </div>
                                 <div class="flex gap-3">
-                                    <img src="images/Coat.jpg" alt="Coat"
+                                    <img src="/images/Coat.jpg" alt="Coat"
                                         class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
                                     <div>
                                         <h2 class="font-bold">Coat</h2>
@@ -273,7 +273,7 @@
                             <div class="border-b border-black font-bold mb-4"></div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div class="flex gap-3">
-                                    <img src="images/Tailored Jacket.png" alt="Tailored Jacket"
+                                    <img src="/images/Tailored Jacket.png" alt="Tailored Jacket"
                                         class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
                                     <div>
                                         <h2 class="font-bold">Tailored Jacket</h2>
@@ -285,7 +285,7 @@
                                     </div>
                                 </div>
                                 <div class="flex gap-3">
-                                    <img src="images/vintage.jpg" alt="Vintage Shirt"
+                                    <img src="/images/vintage.jpg" alt="Vintage Shirt"
                                         class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
                                     <div>
                                         <h2 class="font-bold">Vintage Shirt</h2>
@@ -297,7 +297,7 @@
                                     </div>
                                 </div>
                                 <div class="flex gap-3">
-                                    <img src="images/Arab Shopping Bag.jpg" alt="Arab Shopping Bag"
+                                    <img src="/images/Arab Shopping Bag.jpg" alt="Arab Shopping Bag"
                                         class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
                                     <div>
                                         <h2 class="font-bold">Arab Shopping Bag</h2>
@@ -309,7 +309,7 @@
                                     </div>
                                 </div>
                                 <div class="flex gap-3">
-                                    <img src="images/Colored Hat.jpg" alt="Colored Hat"
+                                    <img src="/images/Colored Hat.jpg" alt="Colored Hat"
                                         class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
                                     <div>
                                         <h2 class="font-bold">Colored Hat</h2>

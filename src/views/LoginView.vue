@@ -38,7 +38,7 @@
       <!-- Right: Login form -->
       <transition name="slide-right" appear>
         <div class="hidden md:flex items-center justify-center p-2">
-          <img src="images/3.jpg" alt="Login Visual" class="w-full h-auto rounded-lg shadow-xl max-w-md" />
+          <img src="/images/3.jpg" alt="Login Visual" class="w-full h-auto rounded-lg shadow-xl max-w-md" />
         </div>
       </transition>
     </div>

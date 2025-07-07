@@ -3,7 +3,7 @@
     <!-- Left: Image with animation -->
     <transition name="slide-left" appear>
       <div class="hidden md:flex items-center justify-center p-2 bg-gray-200">
-        <img src="images/2.jpg" alt="Signup Visual" class="w-full h-auto rounded-lg shadow-xl max-w-md" />
+        <img src="/images/2.jpg" alt="Signup Visual" class="w-full h-auto rounded-lg shadow-xl max-w-md" />
       </div>
     </transition>
 

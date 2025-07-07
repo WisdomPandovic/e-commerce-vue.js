@@ -92,7 +92,7 @@
       <!-- Limted Offer -->
       <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="flex items-center justify-center bg-gray-200">
-          <img src="images/1.jpg" alt="Signup Visual" class="w-full max-h-[250px] shadow-xl object-cover" />
+          <img src="/images/1.jpg" alt="Signup Visual" class="w-full max-h-[250px] shadow-xl object-cover" />
         </div>
 
         <div class="bg-black p-8">
@@ -114,7 +114,7 @@
               <!-- Heart Icon -->
               <HeartIcon
                 class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-              <img src="images/Tailored Jacket.png" alt="Tailored Jacket"
+              <img src="/images/Tailored Jacket.png" alt="Tailored Jacket"
                 class="w-full h-44 rounded-lg shadow-xl object-cover cursor-pointer" loading="lazy"/>
               <p class="text-lg font-semibold mt-2 truncate">Coat</p>
               <div class="flex items-center justify-center text-center gap-2 my-2">
@@ -130,7 +130,7 @@
               <!-- Heart Icon -->
               <HeartIcon
                 class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-              <img src="images/vintage.jpg" alt="Vintage"
+              <img src="/images/vintage.jpg" alt="Vintage"
                 class="w-full h-44 rounded-lg shadow-xl object-cover cursor-pointer" loading="lazy"/>
               <p class="text-lg font-semibold mt-2 truncate">Vintage Shirt</p>
               <div class="flex items-center justify-center text-center gap-2 my-2">
@@ -146,7 +146,7 @@
               <!-- Heart Icon -->
               <HeartIcon
                 class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-              <img src="images/Pink Jacket.jpg" alt="Pink Jacket"
+              <img src="/images/Pink Jacket.jpg" alt="Pink Jacket"
                 class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" loading="lazy"/>
               <p class="text-lg font-semibold mt-2 truncate">Pink Jacket</p>
               <div class="flex items-center justify-center text-center gap-2 my-2">
@@ -162,7 +162,7 @@
               <!-- Heart Icon -->
               <HeartIcon
                 class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-              <img src="images/Shirt & Pant.jpg" alt="Shirt & Pant"
+              <img src="/images/Shirt & Pant.jpg" alt="Shirt & Pant"
                 class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" loading="lazy"/>
               <p class="text-lg font-semibold mt-2 truncate">Shirt & Pant</p>
               <div class="flex items-center justify-center text-center gap-2 my-2">
@@ -179,7 +179,7 @@
             <!-- Heart Icon -->
             <HeartIcon
               class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-            <img src="images/coat.jpg" alt="Coat" class="w-full h-auto rounded-lg shadow-xl max-w-md cursor-pointer" loading="lazy"/>
+            <img src="/images/coat.jpg" alt="Coat" class="w-full h-auto rounded-lg shadow-xl max-w-md cursor-pointer" loading="lazy"/>
             <p class="text-lg font-semibold mt-2 truncate">Coat</p>
             <div class="flex items-center justify-center text-center gap-2 my-2">
               <StarIcon class="w-3 h-3 text-yellow-400" />
@@ -195,7 +195,7 @@
               <!-- Heart Icon -->
               <HeartIcon
                 class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-              <img src="images/Bomber Jacket.png" alt="Bomber Jacket"
+              <img src="/images/Bomber Jacket.png" alt="Bomber Jacket"
                 class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" loading="lazy"/>
               <p class="text-lg font-semibold mt-2 truncate">Bomber Jacket</p>
               <div class="flex items-center justify-center text-center gap-2 my-2">
@@ -211,7 +211,7 @@
               <!-- Heart Icon -->
               <HeartIcon
                 class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-              <img src="images/Colored Hat.jpg" alt="Colored Hat"
+              <img src="/images/Colored Hat.jpg" alt="Colored Hat"
                 class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" loading="lazy"/>
               <p class="text-lg font-semibold mt-2 truncate">Colored Hat</p>
               <div class="flex items-center justify-center text-center gap-2 my-2">
@@ -227,7 +227,7 @@
               <!-- Heart Icon -->
               <HeartIcon
                 class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-              <img src="images/Arab Shopping Bag.jpg" alt="Arab Shopping Bag"
+              <img src="/images/Arab Shopping Bag.jpg" alt="Arab Shopping Bag"
                 class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" loading="lazy" />
               <p class="text-lg font-semibold mt-2 truncate">Arab Shopping Bag</p>
               <div class="flex items-center justify-center text-center gap-2 my-2">
@@ -243,7 +243,7 @@
               <!-- Heart Icon -->
               <HeartIcon
                 class="w-6 h-6 bg-white text-yellow-500 hover:text-red-500 absolute top-2 right-2 z-10 cursor-pointer transition-colors" />
-              <img src="images/underwear.jpg" alt="Underwear"
+              <img src="/images/underwear.jpg" alt="Underwear"
                 class="w-full  h-44 rounded-lg shadow-xl object-cover cursor-pointer" loading="lazy"/>
               <p class="text-lg font-semibold mt-2 truncate">Underwear</p>
               <div class="flex items-center justify-center text-center gap-2 my-2">
