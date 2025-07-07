@@ -174,7 +174,7 @@
             <p class="text-gray-500 text-sm">Oops! Product not found.</p>
         </div>
 
-        <div class="my-9">
+        <div v-if="product" class="my-9">
             <h2 class="font-bold text-2xl">Rating & Reviews</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -308,10 +308,11 @@
         </div>
 
         <div class="my-10 py-9">
-            <h1 class="sm:text-4xl text-lg font-bold text-center">You might also like</h1>
             <div v-if="loading" class="flex justify-center items-center h-40">
                 <div class="w-12 h-12 border-4 border-yellow-500 border-dashed rounded-full animate-spin"></div>
             </div>
+
+            <h1 class="sm:text-4xl text-lg font-bold text-center">You might also like</h1>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-8">
                 <div v-for="item in recommendedProducts" :key="item._id"
@@ -463,14 +464,14 @@ export default {
                 //     .filter(p => p._id !== route.params.id)
                 //     .slice(0, 4)
 
-                if (product.value) {
+                // if (product.value) {
                     recommendedProducts.value = data
                         .filter(p =>
                             p._id !== route.params.id &&
                             p.category?.name === "Neophytegarments"
                         )
                         .slice(0, 4) // Only 4 items
-                }
+                // }
 
                 // ✅ Scroll to top after data is set
                 window.scrollTo({ top: 0, behavior: 'smooth' })

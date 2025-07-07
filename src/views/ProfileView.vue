@@ -159,8 +159,8 @@
                                         <p>13:45, May 10, 2025</p>
                                     </div>
                                 </div>
-                                <div class="border border-gray-400 p-2 rounded text-sm font-bold mb-2">
-                                    <CloudDownloadIcon class="h-5 w-5" />
+                                <div class="flex items-center gap-2 border border-gray-400 p-2 rounded text-sm font-bold mb-2">
+                                    <CloudArrowDownIcon class="h-5 w-5" />
                                     <p>Download Invoice</p>
                                 </div>
                             </div>
@@ -222,7 +222,7 @@
                                     </div>
                                 </div>
                                 <div class="flex gap-3">
-                                    <img src="/images/Coat.jpg" alt="Coat"
+                                    <img src="/images/coat.jpg" alt="Coat"
                                         class="w-20 h-20 rounded-lg shadow-xl max-w-md my-2" />
                                     <div>
                                         <h2 class="font-bold">Coat</h2>
@@ -452,7 +452,8 @@
 
 <script>
 import Wishlist from '@/components/AppWishlist.vue'
-import { PencilIcon, ArrowRightIcon, ArrowLeftIcon, XCircleIcon, TrashIcon, CloudDownloadIcon } from '@heroicons/vue/24/outline'
+import { PencilIcon, ArrowRightIcon, ArrowLeftIcon, XCircleIcon, TrashIcon, } from '@heroicons/vue/24/outline'
+import { CloudArrowDownIcon } from '@heroicons/vue/24/outline'
 // import { VueTelInput } from 'vue-tel-input'
 // import 'vue-tel-input/vue-tel-input.css'
 import { VueTelInput } from 'vue-tel-input'
@@ -468,7 +469,7 @@ export default {
         ArrowLeftIcon,
         ArrowRightIcon,
         VueTelInput,
-        CloudDownloadIcon
+        CloudArrowDownIcon
     },
     name: 'ProfilePage',
     data() {
